@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="stringer.go" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="snippets" />
+    <working_directory value="$PROJECT_DIR$/Go" />
+    <kind value="FILE" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$/Go/stringer.go" />
+    <method v="2" />
+  </configuration>
+</component>
