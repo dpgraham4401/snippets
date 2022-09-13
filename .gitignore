@@ -1,0 +1,15 @@
+
+# C
+**/cmake-build-debug
+**/*CMakeCache.txt
+**/*Makefile
+**/*cmake_install.cmake
+**/CMakeFiles
+## Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+## Executables
+*.exe
+*.out
+*.app
