@@ -2,10 +2,13 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"reflect"
 )
 
 func main() {
+	test := os.Getenv("HELLO")
+	fmt.Println(test)
 	// I think of the empty interface as a way of have dynamic typing (which is wrong but whatever)
 	var i interface{}
 	i = "hello"

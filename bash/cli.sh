@@ -21,6 +21,7 @@ if [ $# -eq 0 ]; then
   print_usage
   exit 1
 fi
+
 # Then go through the remainder of the flags 'rjch'
 while getopts 'rjch' opt; do
   case "$opt" in
@@ -35,6 +36,7 @@ while getopts 'rjch' opt; do
       ;;
     # \? covers flags not listed
     \?|h)
+      # show help message and exit
       print_usage
       exit 0
       ;;
