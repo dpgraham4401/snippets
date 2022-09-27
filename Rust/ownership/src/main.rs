@@ -1,44 +1,47 @@
 // Ownership is Rust's unique approach to memory management
-// other languages either...
-// 1. garbage collector --> Runtime checking variables via some process (e.g., Python, Go)
-// 2. Manual Memory Mngt. --> like C, memory is managed by developer (e.g., C, c++)
-
 // The 3 rules of ownership
-// 1.Each value in Rust has an owner.
+// 1. Each value in Rust has an owner.
 // 2. There can only be one owner at a time.
 // 3. When the owner goes out of scope, the value will be dropped.
+
+struct Person {
+    name: String,
+    age: i32,
+}
 
 fn main() {
     function_scope();
 
-    // Moves
     // variables that do not require allocation on the heap behave similarly to other languages
-    let x = 5; // create variable and assign value of 5
-    let y = x; // create a new variable, y, and assign the value of x
+    let _x = 5; // create variable and assign value of 5, passing it to a function will copy it
+                // psst, the underscore is nice for debugging when you don't want to use a variable
 
     // that's not the case for variables with dynamic memory allocation (e.g., not known as compiletime)
     let my_string1 = String::from("hello");
-    // This returns a String, which is actually 3 parts stored on the stack
-    // 1. a pointer to heap 2. a length, 3. capacity
     let my_string2 = my_string1;
     // when we set my_string2 = my_string1, that info is 'moved' to my_string2, not copied
-    // my_string1 IS NOW BASICALLY INVALID
+    // my_string1 IS NOW 'INVALID'
     // println!("{}", my_string1); // --> throws an error
-    println!("{}: <location:{:p}, value: {}>", stringify!(my_string2), &my_string2, my_string2); // --> this is ok
+    println!(
+        "{}: <location:{:p}, value: {}>",
+        stringify!(my_string2),
+        &my_string2,
+        my_string2
+    ); // --> this is ok
 
-    // Cloning
     // if we'd like to make a copy, we need to use the clone method
     let my_string3 = my_string2.clone();
-    println!("{}: <location:{:p}, value: {}>", stringify!(my_string3), &my_string3, my_string3); // --> this is ok
+    println!(
+        "{}: <location:{:p}, value: {}>",
+        stringify!(my_string3),
+        &my_string3,
+        my_string3
+    ); // --> this is ok
 
-
-    // Ownership w/ functions
     // passing arguments will either 'move' or 'copy', if you'd like to clone, you need to do that yourself
     takes_ownership(my_string3);
-    // println!("{}", my_string3); // --> throws an error since 'takes_ownership' took
-    // this variable and released it when the scope finished
+    // println!("{}", my_string3); // --> throws an error since 'takes_ownership' took my_string3 and released it
 
-    // References
     // there's another option to 'Borrow' ownership through passing references
     let my_string4 = String::from("my string4");
     println!("in main {}", my_string4);
@@ -52,9 +55,43 @@ fn main() {
     println!("in main again: {}", my_string5); // --> prints the orig string
     mut_borrow(&mut my_string5); // --> mutates and prints new string via reference
     println!("in main again: {}", my_string5); // --> prints the mutated string again
+
+    let mut jim = Person {
+        name: "jim".to_string(),
+        age: 42,
+    };
+    borrow_struct(&jim);
+    jim.say_hello();
+    println!("{}'s age is {}", jim.name, jim.age);
+    jim.increment_age();
+    println!("{}'s age is {}", jim.name, jim.age);
+    own_struct(jim);
 }
 
-fn mut_borrow( s: &mut String) {
+fn borrow_struct(person: &Person) {
+    println!("This function borrows {}", person.name);
+}
+
+fn own_struct(person: Person) {
+    println!(
+        "This function owns{}... in hindsight, kinda messed up",
+        person.name
+    );
+}
+
+impl Person {
+    fn say_hello(&self) {
+        // when implementing methods, we usually pass a reference to self (borrow self)
+        println!("Hi, I'm {}", self.name); // however this is not mutable
+    }
+
+    fn increment_age(&mut self) {
+        // if we'd like to change, we need a mutable reference
+        self.age += 1; // TBH, we don't have to think that much about pointers though
+    }
+}
+
+fn mut_borrow(s: &mut String) {
     s.push_str(", plus this additional string");
     println!("From mut_borrow function: {}", s);
 }
