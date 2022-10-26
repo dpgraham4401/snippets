@@ -14,14 +14,11 @@ fn main() {
 
     // variables that do not require allocation on the heap behave similarly to other languages
     let _x = 5; // create variable and assign value of 5, passing it to a function will copy it
-                // psst, the underscore is nice for debugging when you don't want to use a variable
 
     // that's not the case for variables with dynamic memory allocation (e.g., not known as compiletime)
     let my_string1 = String::from("hello");
     let my_string2 = my_string1;
-    // when we set my_string2 = my_string1, that info is 'moved' to my_string2, not copied
-    // my_string1 IS NOW 'INVALID'
-    // println!("{}", my_string1); // --> throws an error
+    // when we set my_string2 = my_string1, that info is 'moved' to my_string2, not copied my_string1 IS NOW 'INVALID'
     println!(
         "{}: <location:{:p}, value: {}>",
         stringify!(my_string2),
@@ -38,23 +35,11 @@ fn main() {
         my_string3
     ); // --> this is ok
 
-    // passing arguments will either 'move' or 'copy', if you'd like to clone, you need to do that yourself
-    takes_ownership(my_string3);
-    // println!("{}", my_string3); // --> throws an error since 'takes_ownership' took my_string3 and released it
-
     // there's another option to 'Borrow' ownership through passing references
     let my_string4 = String::from("my string4");
     println!("in main {}", my_string4);
-    borrows_var(&my_string4);
+    borrows_var(&my_string4); // the '&' allows us to create a reference to something without taking ownership
     println!("in main {}", my_string4);
-    // the & allows us to create a reference to something without taking ownership
-
-    let mut my_string5 = String::from("a lonely string");
-    // we can have mutable references, see 'mut_borrow' function
-    println!("\n");
-    println!("in main again: {}", my_string5); // --> prints the orig string
-    mut_borrow(&mut my_string5); // --> mutates and prints new string via reference
-    println!("in main again: {}", my_string5); // --> prints the mutated string again
 
     let mut jim = Person {
         name: "jim".to_string(),
@@ -91,19 +76,9 @@ impl Person {
     }
 }
 
-fn mut_borrow(s: &mut String) {
-    s.push_str(", plus this additional string");
-    println!("From mut_borrow function: {}", s);
-}
-
 fn borrows_var(s: &String) {
     // Here's the thing, since we're borrowing s, we cannot modify it, this function doesn't own s
     println!("From borrow_var function: {}", s);
-}
-
-// this function will take ownership of the string passed in
-fn takes_ownership(my_string: String) {
-    println!("{}", my_string);
 }
 
 fn function_scope() {

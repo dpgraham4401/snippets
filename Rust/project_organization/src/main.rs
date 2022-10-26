@@ -4,7 +4,6 @@
 // a crate is the smallest amount of code rustc will compile (could be a single file)
 // A crate can be a library or binary. src/main.rs and src/lib.rs are special files
 
-// a module is basically a namespace
 // Rust does not implicitly map the module tree to the filesystem, we have to build it
 mod my_lib; // modules are declared in the files you use them, not the file they're in
 mod my_module; // this declares my_module, the compiler will look for /my_module.rs or /my_module/mod.rs
