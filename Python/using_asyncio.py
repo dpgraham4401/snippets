@@ -1,4 +1,5 @@
 import asyncio
+import random
 import requests
 
 census_key = 'a88b50af47f987e2e4f7b8a8178e0071fa06d360'
@@ -27,5 +28,27 @@ async def example_using_executor():
     print('2017 US population', response3.json()[1][0])
 
 
+async def io_bound_task(i):
+    print(f"start:   {i}")
+    sleep_time = random.randint(0, 5)
+    await asyncio.sleep(sleep_time)
+    print(f"end:     {i}")
+    return i
+
+
+async def run_multiple_tasks():
+    my_results = []
+    # Import note, using 'async for' does not iterate and start a number of concurrent tasks
+    # If we'd like to start a number of tasks and process them as completed, we should use the following
+    for f in asyncio.as_completed([io_bound_task(i) for i in range(1, 6)]):
+        my_results.append(await f)
+    print('my results: ', my_results)  # we don't really have any guarantees on start or stop order
+
+    # If we want to use list comp to store the results, we could await the results (kinda inception-y)
+    # foo = [await f for f in asyncio.as_completed([io_bound_task(i) for i in my_task_ids])]
+
+
 if __name__ == "__main__":
-    asyncio.run(example_using_executor())
+    # we can initiate our async functions with the asyncio.run function
+    # asyncio.run(example_using_executor())
+    asyncio.run(run_multiple_tasks())
