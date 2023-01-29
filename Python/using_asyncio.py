@@ -37,18 +37,30 @@ async def io_bound_task(i):
 
 
 async def run_multiple_tasks():
+    """
+    Remember: Concurrency is a broad term that covers asynchronous and multiprocessor/parallelism
+
+    To help remember asynchronous vs parallelism, asynchronous is single threaded, only one co-routine can
+    ocupy the threads 'focus' at a given time. parallel programming uses multiple threads,
+    each task is running independently, pretty straight forward :)
+    """
     my_results = []
-    # Import note, using 'async for' does not iterate and start a number of concurrent tasks
     # If we'd like to start a number of tasks and process them as completed, we should use the following
     for f in asyncio.as_completed([io_bound_task(i) for i in range(1, 6)]):
         my_results.append(await f)
     print('my results: ', my_results)  # we don't really have any guarantees on start or stop order
 
-    # If we want to use list comp to store the results, we could await the results (kinda inception-y)
+    # we could use 'await' in list comp to store the results (kinda inception-y)
     # foo = [await f for f in asyncio.as_completed([io_bound_task(i) for i in my_task_ids])]
 
 
-if __name__ == "__main__":
-    # we can initiate our async functions with the asyncio.run function
-    # asyncio.run(example_using_executor())
+def main():
+    # We can run multiple async tasks from a synchronous function like so
+    print('Starting the main (synchronous) function')
     asyncio.run(run_multiple_tasks())
+    print('End the main (synchronous) function')
+
+
+if __name__ == "__main__":
+    # asyncio.run(example_using_executor())
+    main()
