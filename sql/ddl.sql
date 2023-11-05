@@ -1,0 +1,6 @@
+CREATE SCHEMA IF NOT EXISTS play_land;
+
+CREATE TABLE IF NOT EXISTS play
+(
+
+);
