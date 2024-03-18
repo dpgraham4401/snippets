@@ -1,4 +1,4 @@
-package main.java.org.helloworld;
+package main.java.org.snippets;
 // Java packages follow a reverse domain. The package name should match the directory structure
 
 
