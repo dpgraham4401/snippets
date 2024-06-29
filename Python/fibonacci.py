@@ -22,14 +22,20 @@ class TestFibonacciFunction:
         assert fibonacci(0) == 0
         assert fibonacci(1) == 1
 
-    @pytest.mark.parametrize('input_number,expected_result', [(2, 1), (3, 2), (4, 3), (5, 5), (6, 8), (7, 13)])
+    @pytest.mark.parametrize(
+        "input_number,expected_result",
+        [(2, 1), (3, 2), (4, 3), (5, 5), (6, 8), (7, 13)],
+    )
     def test_the_beginning_of_the_series(self, input_number, expected_result):
         assert fibonacci(input_number) == expected_result
 
-    @pytest.mark.parametrize('input_number,expected_result', [(2, 1), (3, 2), (4, 3), (5, 5), (6, 8), (7, 13)])
+    @pytest.mark.parametrize(
+        "input_number,expected_result",
+        [(2, 1), (3, 2), (4, 3), (5, 5), (6, 8), (7, 13)],
+    )
     def test_recursive_fibonacci_function(self, input_number, expected_result):
         assert fibonacci_recursive(input_number) == expected_result
 
 
-if __name__ == '__main__':
-    pytest.main(['-v', __file__])
+if __name__ == "__main__":
+    pytest.main(["-v", __file__])
