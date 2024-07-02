@@ -30,6 +30,6 @@ baz = bar[:]
 print("baz == bar", baz == bar)  # -> True
 print("baz is bar", baz is bar)  # -> False
 
-# Lastly, a 'Stride' can be used to set the step increment
+# Lastly, a 'Stride' or 'step' can be used to set the step increment
 print(foo[0:7:2])  # -> [0, 2, 4, 6]
 # starting at index 0, going to index 7, get every other element (2)
