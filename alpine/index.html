@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- This is the hello world equivalent -->
+    <h1 x-data="{ message: 'I ❤️ Alpine' }" x-text="message"></h1>
+    <!-- x-data will allow children elements to use the data declared -->
+    <div x-data="{count: 0}">
+      <!-- 'x-on:click' can be replaced with '@click' -->
+      <button type="button" x-on:click="count++">increment</button>
+      <span x-text="count"></span>
+      <button type="button" @click="count--">decrement</button>
+    </div>
+  </body>
+</html>
