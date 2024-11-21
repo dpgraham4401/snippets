@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Document</title>
+  </head>
+  <body x-data="{ darkMode: true }" x-bind:class="{ 'darkMode': darkMode }">
+    <div>
+      <button @click="darkMode = !darkMode">Toggle Theme</button>
+    </div>
+  </body>
+</html>
