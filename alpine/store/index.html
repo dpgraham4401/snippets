@@ -5,14 +5,25 @@
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
+    <script>
+      document.addEventListener("alpine:init", () => {
+        Alpine.store("darkMode", {
+          on: false,
+
+          toggle() {
+            this.on = !this.on;
+          },
+        });
+      });
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles.css" />
-    <title>Document</title>
+    <title>Dark Mode and Stores</title>
   </head>
-  <body x-data="{ darkMode: true }" x-bind:class="{ 'darkMode': darkMode }">
+  <body x-data x-bind:class="$store.darkMode.on && 'darkMode'">
     <div>
-      <button @click="darkMode = !darkMode">Toggle Theme</button>
+      <button x-data @click="$store.darkMode.toggle()">Toggle Dark Mode</button>
     </div>
   </body>
 </html>
