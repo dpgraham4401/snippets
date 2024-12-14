@@ -8,7 +8,7 @@ import time
 from typing import Callable, Any
 
 def get_duration_str(start: float) -> str:
-    """Get human readable duration string from start time"""
+    """Get human-readable duration string from start time"""
     duration = time.time() - start
     if duration > 1:
         duration_str = f'{duration:,.3f}s'
