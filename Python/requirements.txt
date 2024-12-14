@@ -2,3 +2,5 @@ requests==2.32.3
 pytest==8.2.2
 mypy==1.13.0
 mypy-extensions==1.0.0
+httpx==0.28.1
+ruff==0.8.3

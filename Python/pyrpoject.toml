@@ -1,0 +1,7 @@
+[project]
+name = "spam-eggs"
+version = "0.1.0"
+description = "A project of python snippets."
+
+[tool.ruff]
+line-length = 100
