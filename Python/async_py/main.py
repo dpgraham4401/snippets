@@ -1,6 +1,8 @@
 import asyncio
 from asyncio import Task, create_task, gather
 
+import uvloop
+
 from async_py.client import Client, ToDo
 from async_py.utils import timed
 
@@ -27,6 +29,7 @@ async def run_placeholder_import() -> None:
 
 def main() -> None:
     """Our normal, synchronous starting point for our programs."""
+    uvloop.install()
     asyncio.run(run_placeholder_import())
 
 
