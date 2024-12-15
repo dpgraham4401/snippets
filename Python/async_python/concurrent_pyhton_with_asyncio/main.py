@@ -1,51 +1,38 @@
-"""Writing an echo socket server using asyncio.
-
-This simple echo server illustrates how the asyncio event loop operates under the hood.
-It demonstrates the concept of registering events that we care about, (in this case, reading from a socket)
-and only be woken up when those events occur.
-"""
+"""Writing an echo socket server using asyncio."""
+import asyncio
+from asyncio import AbstractEventLoop
 
 import socket
-# The selectors module "provides high-level and efficient I/O multiplexing"
-# simply put, it allows us to wait for events (readable, writable, etc.) on multiple file-like objects (sockets, files, etc.)
-# without blocking
-import selectors
-from selectors import SelectorKey
 
-# Instead of constantly looping and checking for connections from clients, we can use the selectors module
-selector = selectors.DefaultSelector()
 
-# create a socket using IPv4 (AF_INET) and TCP (SOCK_STREAM)
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# set the SO_REUSEADDR option to reuse the same address, useful if server starts/stops frequently
-server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+async def echo(connection: socket, loop: AbstractEventLoop) -> None:
+    """Echo messages from a client."""
+    while data := await loop.sock_recv(connection, 1024):
+        print(f"Received {data!r}")
+        await loop.sock_sendall(connection, data)
 
-server_address = ('127.0.0.1', 8000)
-server_socket.setblocking(False)
-server_socket.bind(server_address)
-server_socket.listen()
 
-# Here, we register the socket (remember, everything is a file in Unix) with the selector
-# with the event we want to wait for (in this case, read events)
-selector.register(server_socket, selectors.EVENT_READ)
+async def listen_for_connection(server_socket: socket, loop: AbstractEventLoop):
+    """Listen for incoming connections.
 
-while True:
-    # infinite loop, and check for an event every second
-    events: list[tuple[SelectorKey, int]] = selector.select(timeout=1)
-    if len(events) == 0:
-        print("Waiting for events...")
-    for event, _ in events:
-        # get the event's file object
-        event_socket = event.fileobj
+    This function has the same role as our while loop in the previous version.
+    """
+    while True:
+        connection, address = await loop.sock_accept(server_socket)
+        connection.setblocking(False)
+        print(f"Got a connection from {address}")
+        asyncio.create_task(echo(connection, loop))
 
-        # if the event is the server socket, we accept the connection
-        if event_socket == server_socket:
-            connection, client_address = server_socket.accept()
-            connection.setblocking(False)
-            print(f"Connection from {client_address}")
-            selector.register(connection, selectors.EVENT_READ)
-        # otherwise, receive data from the client and send it back
-        else:
-            data = event_socket.recv(1024)
-            print(f"Received: {data!r}")
-            event_socket.send(data)
+async def main():
+    """Set up the server and listen for incoming connections."""
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server_address = ("127.0.0.1", 8000)
+    server_socket.setblocking(False)
+    server_socket.bind(server_address)
+    server_socket.listen()
+    await listen_for_connection(server_socket, asyncio.get_event_loop())
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
