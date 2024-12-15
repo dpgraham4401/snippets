@@ -1,4 +1,9 @@
-"""Writing an asynchronous socket server using asyncio."""
+"""Writing an echo socket server using asyncio.
+
+This simple echo server illustrates how the asyncio event loop operates under the hood.
+It demonstrates the concept of registering events that we care about, (in this case, reading from a socket)
+and only be woken up when those events occur.
+"""
 
 import socket
 # The selectors module "provides high-level and efficient I/O multiplexing"
