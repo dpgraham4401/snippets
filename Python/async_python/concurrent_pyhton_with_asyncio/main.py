@@ -1,6 +1,14 @@
 """Writing an asynchronous socket server using asyncio."""
 
 import socket
+# The selectors module "provides high-level and efficient I/O multiplexing"
+# simply put, it allows us to wait for events (readable, writable, etc.) on multiple file-like objects (sockets, files, etc.)
+# without blocking
+import selectors
+from selectors import SelectorKey
+
+# Instead of constantly looping and checking for connections from clients, we can use the selectors module
+selector = selectors.DefaultSelector()
 
 # create a socket using IPv4 (AF_INET) and TCP (SOCK_STREAM)
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -8,42 +16,31 @@ server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 server_address = ('127.0.0.1', 8000)
+server_socket.setblocking(False)
 server_socket.bind(server_address)
 server_socket.listen()
-# set the socket to non-blocking mode, this is required for the server to actually function with multiple connections
-# it allows the server to return buffers to the 2nd client before the connection is closed with the 1st client
-server_socket.setblocking(False)
 
-connections = []
+# Here, we register the socket (remember, everything is a file in Unix) with the selector
+# with the event we want to wait for (in this case, read events)
+selector.register(server_socket, selectors.EVENT_READ)
 
-try:
-    while True:
-        try:
+while True:
+    # infinite loop, and check for an event every second
+    events: list[tuple[SelectorKey, int]] = selector.select(timeout=1)
+    if len(events) == 0:
+        print("Waiting for events...")
+    for event, _ in events:
+        # get the event's file object
+        event_socket = event.fileobj
+
+        # if the event is the server socket, we accept the connection
+        if event_socket == server_socket:
             connection, client_address = server_socket.accept()
-            connection.setblocking(False) # also need this
+            connection.setblocking(False)
             print(f"Connection from {client_address}")
-            connections.append(connection)
-        except BlockingIOError:
-            # See note below on why we need to handle this exception
-            pass
-
-        for client in connections:
-            try:
-                buffer = b''
-                while buffer[-2:] != b'\r\n':
-                    data = connection.recv(2)
-                    if not data:
-                        break
-                    else:
-                        print(f"Received: {data!r}")
-                        buffer += data
-                print(f"All data received: {buffer!r}")
-                client.send(buffer)
-            except BlockingIOError:
-                # if we put the socket in non-blocking mode, we need to handle this exception
-                # essentially, because there is no data to process, the server instantly crashes
-                # THIS IS NOT THE REAL WAY TO HANDLE THIS, BUT for example only
-                # This is resource intensive and wasteful
-                pass
-finally:
-    server_socket.close()
+            selector.register(connection, selectors.EVENT_READ)
+        # otherwise, receive data from the client and send it back
+        else:
+            data = event_socket.recv(1024)
+            print(f"Received: {data!r}")
+            event_socket.send(data)
