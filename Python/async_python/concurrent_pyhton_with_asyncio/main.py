@@ -11,17 +11,25 @@ server_address = ('127.0.0.1', 8000)
 server_socket.bind(server_address)
 server_socket.listen()
 
+connections = []
+
 try:
-    connection, client_address = server_socket.accept()
-    print(f"Connection from {client_address}")
-    buffer = b''
-    while buffer[-2:] != b'\r\n':
-        data = connection.recv(2)
-        if not data:
-            break
-        else:
-            print(f"Received: {data}")
-            buffer += data
-    print(f"All data received: {buffer}")
+    while True:
+        connection, client_address = server_socket.accept()
+        print(f"Connection from {client_address}")
+        connections.append(connection)
+
+
+        for client in connections:
+            buffer = b''
+            while buffer[-2:] != b'\r\n':
+                data = connection.recv(2)
+                if not data:
+                    break
+                else:
+                    print(f"Received: {data!r}")
+                    buffer += data
+            print(f"All data received: {buffer!r}")
+            client.send(buffer)
 finally:
     server_socket.close()
