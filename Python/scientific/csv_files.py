@@ -19,6 +19,17 @@ def read_mini_without_headers() -> None:
             else:
                 tie_count[tie_name] = 1
 
+my_data = [
+    ["Joe", "smith", "21", "hiking"],
+    ["samantha", "adams", "42", "swimming"]
+]
+
+def writing_example_csv_data() -> None:
+    with open("./example.csv", "w") as csv_file:
+        writer = csv.writer(csv_file)
+        for data in my_data:
+            writer.writerow(data)
+
 
 if __name__ == "__main__":
-    read_mini_without_headers()
+    writing_example_csv_data()
