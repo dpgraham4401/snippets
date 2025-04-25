@@ -8,6 +8,7 @@ using the std lib csv files or pandas.
 
 import csv
 
+import numpy as np
 import pandas as pd
 
 
@@ -43,11 +44,18 @@ def reading_large_data_with_pandas() -> None:
     df = pd.read_csv(
         "./five_min_tie_flows.csv",
         header=0,
-        names=["foo", "fuf", "bar", "bs", "baz"],
-        usecols=[0, 1, 3],
+        names=["date_added", "date_updated", "union", "watts", "power"],
+        dtype={
+            "date_added": str,
+            "date_updated": str,
+            "union": str,
+            "watts": np.float64,
+            "power": np.float64,
+        },
+        parse_dates=["date_added", "date_updated"],
     )
-
     print(df.head())
+    # print(df["bar"].dtype)
 
 
 if __name__ == "__main__":
