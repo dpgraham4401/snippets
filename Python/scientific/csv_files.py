@@ -8,6 +8,9 @@ using the std lib csv files or pandas.
 
 import csv
 
+import pandas
+import pandas as pd
+
 def read_mini_without_headers() -> None:
     with open("./mini_no_headers.csv") as csv_file:
         csv_reader = csv.DictReader(csv_file, fieldnames=("foo", "bar", "baz", "fee", "fii"))
@@ -31,5 +34,11 @@ def writing_example_csv_data() -> None:
             writer.writerow(data)
 
 
+def reading_large_data_with_pandas() -> None:
+    """reading a file with pandas is wicked simple, just..."""
+    df = pandas.read_csv("./five_min_tie_flows.csv")
+    print(df.head())
+
+
 if __name__ == "__main__":
-    writing_example_csv_data()
+    reading_large_data_with_pandas()
