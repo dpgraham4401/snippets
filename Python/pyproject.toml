@@ -11,13 +11,37 @@ dependencies = [
     "mypy==1.13.0",
     "mypy-extensions==1.0.0",
     "httpx==0.28.1",
-    "ruff==0.8.3",
     "uvloop==0.21.0",
     "aiohttp==3.11.10",
     "aiohttp[speedups]==3.11.10",
     "numpy==2.2.5",
     "pandas>=2.2.3",
+    "ruff>=0.11.7",
+    "pandas-stubs>=2.2.3.250308",
 ]
 
 [tool.ruff]
+target-version = "py312"
 line-length = 100
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "ANN", # type annotations
+    "FBT", # boolean trap
+    "CPY", # copyright notices
+    "ARG", # no unused arguments
+    "PLR0914", # too many local variables (>15)
+    "DJ001", # avoid using null=True in char fields
+    "G004", # f-strings in logging
+    "FIX002", # line contains todo
+    "PLR6301", # static method detector
+    "DOC", # lint pieces of docstring
+    "RUF012",
+    # following rules are redundant with the formatter
+    "COM812",
+    "D",
+    "PTH123",
+    "PD901",
+    "T201"
+]

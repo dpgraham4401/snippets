@@ -7,9 +7,12 @@ using the std lib csv files or pandas.
 # Using the standard library csv package
 
 import csv
+
 import pandas as pd
 
+
 def read_mini_without_headers() -> None:
+    """Read a mini CSV file that does not contain a header (OHH NOW)."""
     with open("./mini_no_headers.csv") as csv_file:
         csv_reader = csv.DictReader(csv_file, fieldnames=("foo", "bar", "baz", "fee", "fii"))
         tie_count: dict[str, int] = {}
@@ -20,10 +23,9 @@ def read_mini_without_headers() -> None:
             else:
                 tie_count[tie_name] = 1
 
-my_data = [
-    ["Joe", "smith", "21", "hiking"],
-    ["samantha", "adams", "42", "swimming"]
-]
+
+my_data = [["Joe", "smith", "21", "hiking"], ["samantha", "adams", "42", "swimming"]]
+
 
 def writing_example_csv_data() -> None:
     with open("./example.csv", "w") as csv_file:
@@ -38,7 +40,13 @@ def reading_large_data_with_pandas() -> None:
     We can replace the header names with our own by telling pandas both the num headers
     and the column names.
     """
-    df = pd.read_csv("./five_min_tie_flows.csv", header=0, names=["foo", "fuf", "bar", "bs", "baz"])
+    df = pd.read_csv(
+        "./five_min_tie_flows.csv",
+        header=0,
+        names=["foo", "fuf", "bar", "bs", "baz"],
+        usecols=[0, 1, 3],
+    )
+
     print(df.head())
 
 
