@@ -7,8 +7,6 @@ using the std lib csv files or pandas.
 # Using the standard library csv package
 
 import csv
-
-import pandas
 import pandas as pd
 
 def read_mini_without_headers() -> None:
@@ -35,8 +33,12 @@ def writing_example_csv_data() -> None:
 
 
 def reading_large_data_with_pandas() -> None:
-    """reading a file with pandas is wicked simple, just..."""
-    df = pandas.read_csv("./five_min_tie_flows.csv")
+    """reading a file with pandas is wicked simple, just...
+
+    We can replace the header names with our own by telling pandas both the num headers
+    and the column names.
+    """
+    df = pd.read_csv("./five_min_tie_flows.csv", header=0, names=["foo", "fuf", "bar", "bs", "baz"])
     print(df.head())
 
 
