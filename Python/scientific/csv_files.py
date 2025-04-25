@@ -8,11 +8,11 @@ using the std lib csv files or pandas.
 
 import csv
 
-with open("./five_min_tie_flows.csv") as csv_file:
-    csv_reader = csv.DictReader(csv_file)
+with open("./mini_no_headers.csv") as csv_file:
+    csv_reader = csv.DictReader(csv_file, fieldnames=("foo", "bar", "baz", "fee", "fii"))
     tie_count: dict[str, int] = {}
     for row in csv_reader:
-        tie_name = row["tie_flow_name"]
+        tie_name = row["baz"]
         if tie_name in tie_count:
             tie_count[tie_name] += 1
         else:
