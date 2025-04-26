@@ -1,4 +1,5 @@
 """Writing an echo socket server using asyncio."""
+
 import asyncio
 from asyncio import AbstractEventLoop
 
@@ -23,6 +24,7 @@ async def listen_for_connection(server_socket: socket, loop: AbstractEventLoop):
         print(f"Got a connection from {address}")
         asyncio.create_task(echo(connection, loop))
 
+
 async def main():
     """Set up the server and listen for incoming connections."""
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -33,6 +35,6 @@ async def main():
     server_socket.listen()
     await listen_for_connection(server_socket, asyncio.get_event_loop())
 
+
 if __name__ == "__main__":
     asyncio.run(main())
-

@@ -10,7 +10,8 @@ from middleware import setup_middlewares
 app = web.Application()
 setup_routes(app)
 setup_middlewares(app)
-app['config'] = config  # Don't need this but still good to know.
-aiohttp_jinja2.setup(app,
-                     loader=jinja2.FileSystemLoader(str(BASE_DIR / 'aiohttpdemo_polls' / 'templates')))
+app["config"] = config  # Don't need this but still good to know.
+aiohttp_jinja2.setup(
+    app, loader=jinja2.FileSystemLoader(str(BASE_DIR / "aiohttpdemo_polls" / "templates"))
+)
 web.run_app(app)

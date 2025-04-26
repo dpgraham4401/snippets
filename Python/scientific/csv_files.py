@@ -54,8 +54,8 @@ def reading_large_data_with_pandas() -> None:
         },
         parse_dates=["date_added", "date_updated"],
     )
-    print(df.head())
-    # print(df["bar"].dtype)
+    print(df.describe())
+    print(df["union"].value_counts())
 
 
 if __name__ == "__main__":

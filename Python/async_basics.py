@@ -17,12 +17,8 @@ import requests
 
 census_key = "a88b50af47f987e2e4f7b8a8178e0071fa06d360"
 pop_2021 = f"https://api.census.gov/data/2021/pep/population?get=POP_2021&for=us:*&key={census_key}"
-pop_2019 = (
-    f"https://api.census.gov/data/2019/pep/population?get=POP&for=us:*&key={census_key}"
-)
-pop_2017 = (
-    f"https://api.census.gov/data/2017/pep/population?get=POP&for=us:*&key={census_key}"
-)
+pop_2019 = f"https://api.census.gov/data/2019/pep/population?get=POP&for=us:*&key={census_key}"
+pop_2017 = f"https://api.census.gov/data/2017/pep/population?get=POP&for=us:*&key={census_key}"
 
 
 async def example_using_executor():
@@ -31,9 +27,7 @@ async def example_using_executor():
     code (such as the request library) inside an async function (using async/await syntax)
     """
     loop = asyncio.get_event_loop()  # 'grab a handle for event loop'
-    future1 = loop.run_in_executor(
-        None, requests.get, pop_2021
-    )  # run in the said event loop
+    future1 = loop.run_in_executor(None, requests.get, pop_2021)  # run in the said event loop
     future2 = loop.run_in_executor(
         None, requests.get, pop_2019
     )  # requests.get is our function to execute,
@@ -69,9 +63,7 @@ async def run_multiple_tasks():
     # If we'd like to start a number of tasks and process them as completed, we should use the following
     for f in asyncio.as_completed([io_bound_task(i) for i in range(1, 6)]):
         my_results.append(await f)
-    print(
-        "my results: ", my_results
-    )  # we don't really have any guarantees on start or stop order
+    print("my results: ", my_results)  # we don't really have any guarantees on start or stop order
 
     # we could use 'await' in list comp to store the results (kinda inception-y)
     # foo = [await f for f in asyncio.as_completed([io_bound_task(i) for i in my_task_ids])]

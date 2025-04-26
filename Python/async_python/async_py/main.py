@@ -24,7 +24,8 @@ async def run_placeholder_import() -> None:
     print("Before await")
 
     # This will run ~2 seconds, instead of the sum (~4 seconds)
-    await todos; await todo_1
+    await todos
+    await todo_1
     # instead of using gather, we could await each task individually: await todos; await todo_1
     print(todos)
     print(todo_1)

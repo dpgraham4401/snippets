@@ -107,11 +107,11 @@ pet_dog(box_of_abandoned_puppies.content)  # -> Good dog, spud!
 class BoxOfMyFavoriteDogTypes[Doggo: (GermanShepherd, Bulldog)](Box[Doggo]):
     """A box that can only contain German Shepherds or BullDogs of Dog."""
 
+
 # another example of generic with constraints
 def get_my_dog_name[D: (Bulldog, GermanShepherd)](dog: D) -> str:
     """A function that only accepts a Bulldog or German Shepherd."""
     return dog.name
-
 
 
 # box_of_my_dogs = BoxOfMyFavoriteDogTypes(my_dog) (mypy no like)

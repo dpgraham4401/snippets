@@ -4,12 +4,14 @@ In this chapter, we're learning about how to make concurrent web
 requests using asyncio and the aiohttp library. During the process, we talk about
 async context managers.
 """
+
 import asyncio
 
 import aiohttp
 from aiohttp import ClientResponse
 
 from async_python.async_py.utils import timed
+
 
 async def fetch_with_gather() -> None:
     """Make X requests and use gather to wait for all of them.
@@ -23,7 +25,9 @@ async def fetch_with_gather() -> None:
         - If one task fails, we have to wait for all the others to complete before we can see the error.
     """
     async with aiohttp.ClientSession() as session:
-        urls = [f"https://jsonplaceholder.typicode.com/todos/?_delay=2000&foo={x}" for x in range(10)]
+        urls = [
+            f"https://jsonplaceholder.typicode.com/todos/?_delay=2000&foo={x}" for x in range(10)
+        ]
         tasks = [session.get(url, raise_for_status=True) for url in urls]
         # gather returns a list of the completed results
         responses: list[ClientResponse] = await asyncio.gather(*tasks)
@@ -46,7 +50,9 @@ async def fetch_with_create_task() -> None:
         - The API is clunky.
     """
     async with aiohttp.ClientSession() as session:
-        urls = [f"https://jsonplaceholder.typicode.com/todos/?_delay=2000&foo={x}" for x in range(10)]
+        urls = [
+            f"https://jsonplaceholder.typicode.com/todos/?_delay=2000&foo={x}" for x in range(10)
+        ]
         requests = [session.get(url, raise_for_status=True) for url in urls]
 
         tasks = []
@@ -73,7 +79,10 @@ async def fetch_with_as_completed() -> None:
         - if we want to cancel b/c an error, we need to
     """
     async with aiohttp.ClientSession() as session:
-        urls = [f"https://jsonplaceholder.typicode.com/todos/{x}/?_delay=2000&foo={x}" for x in range(1, 10)]
+        urls = [
+            f"https://jsonplaceholder.typicode.com/todos/{x}/?_delay=2000&foo={x}"
+            for x in range(1, 10)
+        ]
         fetchers = [session.get(url, raise_for_status=True) for url in urls]
 
         # as_completed returns an iterator that yields the results as they come in.
@@ -100,7 +109,10 @@ async def fetch_with_wait() -> None:
         - verbose.
     """
     async with aiohttp.ClientSession() as session:
-        urls = [f"https://jsonplaceholder.typicode.com/todos/{x}/?_delay=2000&foo={x}" for x in range(1, 10)]
+        urls = [
+            f"https://jsonplaceholder.typicode.com/todos/{x}/?_delay=2000&foo={x}"
+            for x in range(1, 10)
+        ]
         fetchers = [asyncio.create_task(session.get(url, raise_for_status=True)) for url in urls]
 
         # asyncio gives us couple options for when we see the first results (done, pending)
@@ -110,11 +122,6 @@ async def fetch_with_wait() -> None:
                 print(done_task.result())
             else:
                 print(done_task.exception())
-
-
-
-
-
 
 
 @timed
@@ -132,7 +139,6 @@ async def main():
 
     # wait is the most flexible, but it's also the most complex.
     await fetch_with_wait()
-
 
 
 if __name__ == "__main__":
