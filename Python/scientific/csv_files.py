@@ -10,6 +10,7 @@ import csv
 
 import numpy as np
 import pandas as pd
+from pandas import DataFrame
 
 
 def read_mini_without_headers() -> None:
@@ -41,10 +42,17 @@ def reading_large_data_with_pandas() -> None:
     We can replace the header names with our own by telling pandas both the num headers
     and the column names.
     """
-    df = pd.read_csv("./data/five_min_tie_flows.csv",
+    df = pd.read_csv(
+        "./data/five_min_tie_flows.csv",
         header=0,
         names=["date_added", "date_updated", "union", "watts", "power"],
-        dtype={"date_added": str,"date_updated": str,"union": str,"watts": np.float64,"power": np.float64},
+        dtype={
+            "date_added": str,
+            "date_updated": str,
+            "union": str,
+            "watts": np.float64,
+            "power": np.float64,
+        },
         parse_dates=["date_added", "date_updated"],
     )
     # We can use boolean operators to filter, while doing analysis on additional columns
@@ -55,5 +63,23 @@ def reading_large_data_with_pandas() -> None:
     print(f"{cple_watts.min()}")
 
 
+def load_simulation_data() -> DataFrame:
+    """Load sample dataset via hardcoded filepath."""
+    return pd.read_csv("./data/simulation.csv")
+
+
+def filter_invalid_results(df: DataFrame) -> DataFrame:
+    """Filter rows marked as invalid from the dataset."""
+    return df[df["valid"] is True]
+
+
+def get_the_mean_temp(data: DataFrame) -> float:
+    """Get the mean temperature from the dataset."""
+    return data["temperature"].mean()
+
+
 if __name__ == "__main__":
-    reading_large_data_with_pandas()
+    raw_data = load_simulation_data()
+    clean_data = filter_invalid_results(raw_data)
+    temp = get_the_mean_temp(clean_data)
+    print(temp)

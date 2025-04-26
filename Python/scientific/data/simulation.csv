@@ -1,0 +1,16 @@
+simulation_id,time_step,temperature,pressure,velocity,valid
+sim_001,0,295.2,101325,5.1,True
+sim_001,1,296.5,101500,5.4,True
+sim_001,2,NaN,101600,5.5,False
+sim_001,3,298.0,NaN,5.7,True
+sim_001,4,299.1,102000,5.8,True
+sim_002,0,293.0,101200,4.8,True
+sim_002,1,294.5,101300,4.9,True
+sim_002,2,295.0,101400,5.0,True
+sim_002,3,NaN,101500,5.2,False
+sim_002,4,296.0,101600,5.3,True
+sim_003,0,300.0,102100,6.0,True
+sim_003,1,301.2,102300,6.2,True
+sim_003,2,NaN,102400,6.3,False
+sim_003,3,302.8,102500,6.5,True
+sim_003,4,303.5,102600,6.6,True
