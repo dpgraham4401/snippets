@@ -7,10 +7,17 @@ using the std lib csv files or pandas.
 # Using the standard library csv package
 
 import csv
+import logging
 
 import numpy as np
 import pandas as pd
 from pandas import DataFrame, Series
+
+logger = logging.getLogger(__name__)
+
+
+class MyCsvError(Exception):
+    """Custom exception we expose as part of our packages API."""
 
 
 def read_mini_without_headers() -> None:
@@ -65,7 +72,12 @@ def reading_large_data_with_pandas() -> None:
 
 def load_simulation_data() -> DataFrame:
     """Load sample dataset via hardcoded filepath."""
-    return pd.read_csv("./data/simulation.csv")
+    try:
+        return pd.read_csv("./data/simulation.csv")
+    except pd.errors.ClosedFileError as e:
+        msg = "error reading data."
+        logger.exception(msg, exc_info=e)
+        raise MyCsvError(msg) from e
 
 
 def filter_invalid_results(df: DataFrame) -> DataFrame:
@@ -82,9 +94,17 @@ def get_the_mean_temp(data: DataFrame) -> float:
 
 
 def get_mean_simulation_pressure(data: DataFrame) -> Series:
-    sim_avg_temps = data.groupby("simulation_id")["pressure"].mean()
-    print(sim_avg_temps)
-    return sim_avg_temps
+    """Using the groupby method.
+
+    We group all the rows with the same value in the simulation_id col.
+   """
+    try:
+        simulations = data.groupby("simulation_id")
+        return simulations["pressure"].mean()
+    except KeyError as exc:
+        msg = "error calculating mean."
+        logger.exception(msg, exc_info=exc)
+        raise MyCsvError(msg) from exc
 
 
 if __name__ == "__main__":
