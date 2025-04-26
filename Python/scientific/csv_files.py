@@ -97,7 +97,7 @@ def get_mean_simulation_pressure(data: DataFrame) -> Series:
     """Using the groupby method.
 
     We group all the rows with the same value in the simulation_id col.
-   """
+    """
     try:
         simulations = data.groupby("simulation_id")
         return simulations["pressure"].mean()
@@ -107,8 +107,36 @@ def get_mean_simulation_pressure(data: DataFrame) -> Series:
         raise MyCsvError(msg) from exc
 
 
+def add_calculated_density(data: DataFrame) -> DataFrame:
+    """Calculate the density based on the assumption that it's an ideal gas"""
+    data["density"] = data["pressure"] / (
+        data["temperature"] * 1.8
+    )  # not correct, but ok for example
+    return data
+
+
+def celsius_to_fahrenheit(celsius: float) -> float:
+    """Convert celsius to fahrenheit."""
+    return celsius * (9 / 5) + 32
+
+
+def add_calculated_fahrenheit(data: DataFrame) -> DataFrame:
+    """Using the apply method
+
+    If we need a more complex method of producing a series of data.
+    It's best to avoid using the apply method since, under the hoo, it uses
+    a python for loop, and tends to avoid the vectorized operations that pandas
+    uses to stay performant.
+    """
+    data["fahrenheit"] = data.apply(lambda row: celsius_to_fahrenheit(row["temperature"]), axis=1)
+    return data
+
+
 if __name__ == "__main__":
     raw_data = load_simulation_data()
     clean_data = filter_invalid_results(raw_data)
     temp = get_the_mean_temp(clean_data)
     simulation_temperature = get_mean_simulation_pressure(clean_data)
+    data_with_density = add_calculated_density(clean_data)
+    data_with_fahrenheit = add_calculated_fahrenheit(data_with_density)
+    print(data_with_density.head())
