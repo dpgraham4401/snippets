@@ -10,7 +10,7 @@ import csv
 
 import numpy as np
 import pandas as pd
-from pandas import DataFrame
+from pandas import DataFrame, Series
 
 
 def read_mini_without_headers() -> None:
@@ -69,17 +69,26 @@ def load_simulation_data() -> DataFrame:
 
 
 def filter_invalid_results(df: DataFrame) -> DataFrame:
-    """Filter rows marked as invalid from the dataset."""
-    return df[df["valid"] is True]
+    """Filter rows that cannot be used for the analysis."""
+    valid_data = df[df["valid"]]
+    return valid_data.dropna(subset=["temperature", "pressure"])
 
 
 def get_the_mean_temp(data: DataFrame) -> float:
-    """Get the mean temperature from the dataset."""
+    """pandas provides methods for calculating statis like the mean, median, for a series/column."""
+    _median = data["temperature"].median()
+    _mode = data["temperature"].mode()
     return data["temperature"].mean()
+
+
+def get_mean_simulation_pressure(data: DataFrame) -> Series:
+    sim_avg_temps = data.groupby("simulation_id")["pressure"].mean()
+    print(sim_avg_temps)
+    return sim_avg_temps
 
 
 if __name__ == "__main__":
     raw_data = load_simulation_data()
     clean_data = filter_invalid_results(raw_data)
     temp = get_the_mean_temp(clean_data)
-    print(temp)
+    simulation_temperature = get_mean_simulation_pressure(clean_data)
