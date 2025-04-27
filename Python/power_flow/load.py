@@ -10,6 +10,7 @@ import logging
 from pathlib import Path
 
 import pandas as pd
+from pandas.errors import ParserError
 
 logger = logging.getLogger(__name__)
 
@@ -61,8 +62,11 @@ def load_csv_to_df(path: Path) -> pd.DataFrame:
     Raises:
         PowerFlowAnalysisError: if the file cannot be loaded.
     """
-    if not path.exists():
-        msg = "file not found"
-        raise PowerFlowAnalysisError(msg)
-    df = pd.read_csv(path)
-    return df
+    try:
+        df = pd.read_csv(path, on_bad_lines="error", quoting=0)
+    except (FileNotFoundError, ParserError) as exc:
+        msg = "Could not load data from file."
+        logger.exception(msg, extra={"path": str(path)})
+        raise PowerFlowAnalysisError(msg) from exc
+    else:
+        return df
