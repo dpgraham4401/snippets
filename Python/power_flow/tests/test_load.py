@@ -2,7 +2,9 @@
 
 from pathlib import Path
 
-from power_flow.load import get_data_from_csv
+import pytest
+
+from power_flow.load import PowerFlowAnalysisError, get_data_from_csv
 
 
 class TestLoadCsvData:
@@ -12,3 +14,9 @@ class TestLoadCsvData:
         my_data = get_data_from_csv(my_path)
         assert isinstance(my_data, list)
         assert len(my_data) > 0
+
+    def test_errors_when_file_does_not_exists(self):
+        """We raise a custom exception as aprt of our package API."""
+        my_path = Path.cwd() / "foo.csv"
+        with pytest.raises(PowerFlowAnalysisError):
+            _ = get_data_from_csv(my_path)

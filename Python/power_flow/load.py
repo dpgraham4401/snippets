@@ -6,7 +6,12 @@ along with the pandas library and std=lib to load and marshal the dataset.
 """
 
 import csv
+import logging
 from pathlib import Path
+
+import pandas as pd
+
+logger = logging.getLogger(__name__)
 
 # the Path class is one of the primary entry points for the pathlib module
 
@@ -23,15 +28,24 @@ lines_csv = Path.cwd() / "data" / "lines.csv"
 buses_csv = Path.cwd().joinpath("data", "buses.csv")
 
 
+class PowerFlowAnalysisError(Exception):
+    """General Error for when the power flow analysis fails."""
+
+
 def get_data_from_csv(path: Path) -> list[dict]:
     """Read the entire file of data into memory.
 
     Returns:
         list of dictionaries with the parsed csv data, columns are keys.
     """
-    data: list = []
-    with path.open("r") as csv_file:
-        csv_reader = csv.DictReader(csv_file)
-        for lines in csv_reader:
-            data.append(lines)
-    return data
+    try:
+        data: list = []
+        with path.open("r") as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            for lines in csv_reader:
+                data.append(lines)
+        return data
+    except FileNotFoundError as exc:
+        msg = "file not found"
+        logger.exception(msg, extra={"path": str(path)})
+        raise PowerFlowAnalysisError(msg) from exc
