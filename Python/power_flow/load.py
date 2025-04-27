@@ -37,6 +37,8 @@ def get_data_from_csv(path: Path) -> list[dict]:
 
     Returns:
         list of dictionaries with the parsed csv data, columns are keys.
+    Raises:
+        PowerFlowAnalysisError: If the file cannot be read.
     """
     try:
         data: list = []
@@ -49,3 +51,18 @@ def get_data_from_csv(path: Path) -> list[dict]:
         msg = "file not found"
         logger.exception(msg, extra={"path": str(path)})
         raise PowerFlowAnalysisError(msg) from exc
+
+
+def load_csv_to_df(path: Path) -> pd.DataFrame:
+    """Load a dataset from a path into a pandas DataFrame.
+
+    Returns:
+        pandas DataFrame with the dataset.
+    Raises:
+        PowerFlowAnalysisError: if the file cannot be loaded.
+    """
+    if not path.exists():
+        msg = "file not found"
+        raise PowerFlowAnalysisError(msg)
+    df = pd.read_csv(path)
+    return df
