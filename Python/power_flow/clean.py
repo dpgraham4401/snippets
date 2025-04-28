@@ -27,3 +27,13 @@ def get_buses_out_of_range(
         raise ValueError(msg)
     results = data.copy()
     return results[~results[col].between(*val_range)]
+
+
+def filter_buses_by_id(data: DataFrame, ids: list[int]) -> DataFrame:
+    """Remove rows from the dataframe by bus ID.
+
+    Returns:
+        A new dataframe with the bus IDs removed.
+    """
+    results = data.copy()
+    return results[~results["bus_id"].isin(ids)]
