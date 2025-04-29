@@ -2,7 +2,6 @@
 
 import logging
 
-import numpy as np
 import pandas as pd
 from pandas import DataFrame
 
@@ -37,7 +36,7 @@ def fill_empty_with_average(data: DataFrame, name: str) -> DataFrame:
     """
     data_copy = data.copy()
     avg = data_copy[name].mean()
-    data_copy.fillna({name: avg}, inplace=True)
+    data_copy.fillna({name: avg}, inplace=True)  # noqa: PD002 # frowned upon
     return data_copy
 
 

@@ -13,6 +13,6 @@ diff2 = list(set(list1).difference(set(list2)))
 print(diff2)
 
 # sets can also be declared with the {} syntax (don't be confused, it's not a dict)
-my_set = {"banana", "apple", "banana"}
+my_set = {"banana", "apple"}
 print(my_set)  # results -> {'banana', 'apple'}
 print(f"is set: {isinstance(my_set, set)}")

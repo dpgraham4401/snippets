@@ -63,10 +63,10 @@ def load_csv_to_df(path: Path) -> pd.DataFrame:
         PowerFlowAnalysisError: if the file cannot be loaded.
     """
     try:
-        df = pd.read_csv(path, on_bad_lines="error", quoting=0)
+        data = pd.read_csv(path, on_bad_lines="error", quoting=0)
     except (FileNotFoundError, ParserError) as exc:
         msg = "Could not load data from file."
         logger.exception(msg, extra={"path": str(path)})
         raise PowerFlowAnalysisError(msg) from exc
     else:
-        return df
+        return data

@@ -14,11 +14,11 @@ def main():
     buses_data_source = Path.cwd() / "data" / "buses.csv"
     lines_data_source = Path.cwd() / "data" / "lines.csv"
     buses_data = load_csv_to_df(buses_data_source)
-    lines_data = load_csv_to_df(lines_data_source)
+    _ = load_csv_to_df(lines_data_source)
     buses_with_invalid_voltage = get_buses_out_of_range(
         buses_data, col="voltage_pu", val_range=(0.95, 1.05)
     )
-    filtered_buses = filter_buses_by_id(buses_data, buses_with_invalid_voltage["bus_id"].to_list())
+    _ = filter_buses_by_id(buses_data, buses_with_invalid_voltage["bus_id"].to_list())
 
 
 if __name__ == "__main__":

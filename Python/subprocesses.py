@@ -1,13 +1,13 @@
-import os
 import subprocess
+from pathlib import Path
 
 # Get the current working directory
-cwd = os.getcwd()
+cwd = Path.cwd()
 print(f"Current working directory: {cwd}")
 
 # List the contents of the current working directory
 print("Directory contents:")
-for file in os.listdir(cwd):
+for file in Path.cwd().iterdir():
     print(file)
 
 # Call a subprocess

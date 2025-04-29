@@ -35,8 +35,8 @@ class TestLoadCsvData:
 class TestLoadDataIntoDataFrame:
     def test_returns_dataframe(self, data_path):
         """Returns an instance of the pandas libray dataframe."""
-        df = load_csv_to_df(data_path)
-        assert isinstance(df, pd.DataFrame)
+        data = load_csv_to_df(data_path)
+        assert isinstance(data, pd.DataFrame)
 
     def test_raises_error_if_file_not_found(self):
         path = Path.cwd() / "foo.csv"

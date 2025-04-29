@@ -24,6 +24,9 @@ dependencies = [
 target-version = "py312"
 line-length = 100
 
+
+extend-exclude = ["tests", "async_python"]
+
 [tool.ruff.lint]
 select = [
     "F", # pyflakes
@@ -36,6 +39,7 @@ select = [
     "C4", # flake8-comprehensions
     "ISC", # flake8-implicit-str-concat
     "PIE", # flake8-pie
+    "PD", # pandas-vet
     "PT", # flake-pytest-style
     "PTH", # flake8-use-pathlib
     "SIM", # flake8-simplify

@@ -18,11 +18,13 @@ async def fetch_with_gather() -> None:
 
     Good:
         - It's simple to use.
-        - even though task execution order is non-deterministic, the results are returned in the order of the tasks.
+        - even though task execution order is non-deterministic,
+        the results are returned in the order of the tasks.
 
     problems with asyncio.gather:
         - It waits for all tasks to complete before returning any results.
-        - If one task fails, we have to wait for all the others to complete before we can see the error.
+        - If one task fails, we have to wait for all the
+        others to complete before we can see the error.
     """
     async with aiohttp.ClientSession() as session:
         urls = [
@@ -32,7 +34,8 @@ async def fetch_with_gather() -> None:
         # gather returns a list of the completed results
         responses: list[ClientResponse] = await asyncio.gather(*tasks)
 
-        # If an exception occurs, and we don't pass return_exceptions=True, the exception will be raised.
+        # If an exception occurs, and we don't pass return_exceptions=True,
+        # the exception will be raised.
         # responses: list[ClientResponse] = await asyncio.gather(*tasks, return_exceptions=True)
         print(responses)
 
@@ -91,7 +94,7 @@ async def fetch_with_as_completed() -> None:
             try:
                 response = await done_task
                 print(response)
-            except asyncio.TimeoutError:
+            except TimeoutError:
                 print("Timed out")
 
 

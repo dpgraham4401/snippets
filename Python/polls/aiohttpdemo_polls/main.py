@@ -1,11 +1,10 @@
 # aiohttpdemo_polls/main.py
-from aiohttp import web
 import aiohttp_jinja2
 import jinja2
-
-from settings import config, BASE_DIR
-from routes import setup_routes
+from aiohttp import web
 from middleware import setup_middlewares
+from routes import setup_routes
+from settings import BASE_DIR, config
 
 app = web.Application()
 setup_routes(app)

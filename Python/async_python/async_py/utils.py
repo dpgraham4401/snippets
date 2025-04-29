@@ -5,7 +5,8 @@ See timed decorator https://gist.github.com/crizCraig/507e98a6ec6cecd0ed4db7170d
 
 import asyncio
 import time
-from typing import Callable, Any
+from collections.abc import Callable
+from typing import Any
 
 
 def get_duration_str(start: float) -> str:

@@ -13,6 +13,7 @@ It also provides low-level APIs for library/framework developers
 
 import asyncio
 import random
+
 import requests
 
 census_key = "a88b50af47f987e2e4f7b8a8178e0071fa06d360"
@@ -23,7 +24,8 @@ pop_2017 = f"https://api.census.gov/data/2017/pep/population?get=POP&for=us:*&ke
 
 async def example_using_executor():
     """
-    This seems to be the most simple and straight forward way to do something like execute synchronous
+    This seems to be the most simple and straight forward way to do something
+    like execute synchronous
     code (such as the request library) inside an async function (using async/await syntax)
     """
     loop = asyncio.get_event_loop()  # 'grab a handle for event loop'
@@ -55,12 +57,14 @@ async def run_multiple_tasks():
     """
     Remember: Concurrency is a broad term that covers asynchronous and multiprocessor/parallelism
 
-    To help remember asynchronous vs parallelism, asynchronous is single threaded, only one co-routine can
-    ocupy the threads 'focus' at a given time. parallel programming uses multiple threads,
-    each task is running independently, pretty straight forward :)
+    To help remember asynchronous vs parallelism, asynchronous is single threaded,
+    only one co-routine canocupy the threads 'focus' at a given time.
+    parallel programming uses multiple threads, each task is running independently
+    pretty straight forward :)
     """
     my_results = []
-    # If we'd like to start a number of tasks and process them as completed, we should use the following
+    # If we'd like to start a number of tasks and process them as completed,
+    # we should use the following
     for f in asyncio.as_completed([io_bound_task(i) for i in range(1, 6)]):
         my_results.append(await f)
     print("my results: ", my_results)  # we don't really have any guarantees on start or stop order

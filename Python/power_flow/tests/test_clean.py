@@ -14,11 +14,11 @@ class TestGetOutOfRangeValues:
         )
 
     def test_raises_error_when_col_empty(self, data):
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError, match="col"):
             _ = get_buses_out_of_range(data, val_range=(1, 2))
 
     def test_raises_error_when_range_empty(self, data):
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError, match="val_range"):
             _ = get_buses_out_of_range(data, col="foo")
 
     def test_filter_rows_with_col_outside_range(self, data):

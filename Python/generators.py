@@ -1,11 +1,14 @@
 # Generators
 # from the docs Python.org docs:
-#   Generator functions allow you to declare a function that behaves like an iterator, i.e. it can be used in a for loop
+#   Generator functions allow you to declare a function that behaves like an
+#   iterator, i.e. it can be used in a for loop
 #
 # A generator yields a stream of data, one value/object at a time
 
-# we declare generators just like regular function, except, we use the `yield` keyword in place of the `return`
-# The yield keyword tells python to 'pause the execution, save state, and resume from the same state when required'
+# we declare generators just like regular function, except, we use the `yield`
+# keyword in place of the `return`
+# The yield keyword tells python to 'pause the execution,
+# save state, and resume from the same state when required'
 
 # From the docs:
 #   The performance improvement from the use of generators is the result of
@@ -28,4 +31,5 @@ for i in even_positive_nums(7):
     print(f"{i},", end=" ")  # prints -> 2, 4, 6,
 print("\n")
 
-# fun note: the range() function (in python3) is a generator. In python2, xrange() was a generator and range() was not.
+# fun note: the range() function (in python3) is a generator.
+# In python2, xrange() was a generator and range() was not.

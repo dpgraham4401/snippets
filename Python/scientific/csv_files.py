@@ -8,6 +8,7 @@ using the std lib csv files or pandas.
 
 import csv
 import logging
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -22,7 +23,7 @@ class MyCsvError(Exception):
 
 def read_mini_without_headers() -> None:
     """Read a mini CSV file that does not contain a header (OHH NOW)."""
-    with open("./data/mini_no_headers.csv") as csv_file:
+    with Path("./data/mini_no_headers.csv").open("r") as csv_file:
         csv_reader = csv.DictReader(csv_file, fieldnames=("foo", "bar", "baz", "fee", "fii"))
         tie_count: dict[str, int] = {}
         for row in csv_reader:
@@ -37,7 +38,7 @@ my_data = [["Joe", "smith", "21", "hiking"], ["samantha", "adams", "42", "swimmi
 
 
 def writing_example_csv_data() -> None:
-    with open("./data/example.csv", "w") as csv_file:
+    with Path("./data/example.csv").open("w") as csv_file:
         writer = csv.writer(csv_file)
         for data in my_data:
             writer.writerow(data)
@@ -49,7 +50,7 @@ def reading_large_data_with_pandas() -> None:
     We can replace the header names with our own by telling pandas both the num headers
     and the column names.
     """
-    df = pd.read_csv(
+    data = pd.read_csv(
         "./data/five_min_tie_flows.csv",
         header=0,
         names=["date_added", "date_updated", "union", "watts", "power"],
@@ -64,7 +65,7 @@ def reading_large_data_with_pandas() -> None:
     )
     # We can use boolean operators to filter, while doing analysis on additional columns
     # This filters rows where union is CPLE, then sums the watts' column
-    cple_watts = df.loc[df["union"] == "CPLE", "watts"]
+    cple_watts = data.loc[data["union"] == "CPLE", "watts"]
     print(f"{cple_watts.mean()}")
     print(f"{cple_watts.max()}")
     print(f"{cple_watts.min()}")

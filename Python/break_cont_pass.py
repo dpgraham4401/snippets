@@ -3,19 +3,13 @@
 # pass is simple enough, it means "don't do anything." no operations.
 
 
-class YouTriedToAccessAKeyThatDoesNotExists(KeyError):
-    """
-    It can be used in classes
-    e.g., we could inherit a class, not change anything but give a more appropriate/readable name (not that this is lol)
-    """
-
-    pass
+class YouTriedToAccessAKeyThatDoesNotExistsError(KeyError):
+    """A custom version of our error for readability (LOL)."""
 
 
 def do_nothing():
     """We can use it in a function"""
     # Pretty straightforward
-    pass
 
 
 # lastly, it may be useful in control flows
