@@ -3,13 +3,17 @@
 from pandas import DataFrame
 
 
+class DataCleaningError(Exception):
+    """Errors that occur during the data cleaning process."""
+
+
 def get_buses_out_of_range(
     data: DataFrame,
     *,
     col: str | None = None,
     val_range: tuple[float, float] | None = None,
 ) -> DataFrame:
-    """Get view of values out of bound.
+    """Get a view of values out of bound.
 
     Returns:
         A new dataframe with the values in the specified column that are outside
