@@ -1,14 +1,16 @@
 """Calculations relevant to power flow analysis."""
 
-from pandas import DataFrame
+import numpy as np
+from pandas import DataFrame, Series
+from pandas.core.groupby import DataFrameGroupBy
 
 
 def get_bus_mean_resistance(
     lines: DataFrame,
-    bus_key: str = "bus_id",
+    bus_key: str = "from_bus",
     ohm_key: str = "resistance_pu",
-) -> DataFrame:
+) -> Series:
     """Aggregate the resistance for outgoing lines and calculate the mean for each bus."""
-    bus_by_id = lines.groupby(bus_key)
-    print(bus_by_id.h)
-    return lines
+    bus_by_id: DataFrameGroupBy = lines.groupby(bus_key)
+    avg_resistance = bus_by_id[ohm_key].transform(np.mean)
+    return avg_resistance
