@@ -3,7 +3,7 @@
 import pytest
 from pandas import DataFrame, Series
 
-from power_flow.calc import get_bus_mean_resistance
+from power_flow.calc import bus_mean_resistance
 
 
 class TestGetBusMeanResistance:
@@ -23,8 +23,8 @@ class TestGetBusMeanResistance:
 
     def test_raises_error_with_invalid_key(self, lines):
         with pytest.raises(KeyError):
-            _ = get_bus_mean_resistance(lines, bus_key="bad_key")
+            _ = bus_mean_resistance(lines, bus_key="bad_key")
 
     def test_returns_a_dataframe_of_bus_id_and_avg_resistance(self, lines):
-        results = get_bus_mean_resistance(lines)
+        results = bus_mean_resistance(lines)
         assert isinstance(results, Series)

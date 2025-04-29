@@ -5,7 +5,7 @@ from pandas import DataFrame, Series
 from pandas.core.groupby import DataFrameGroupBy
 
 
-def get_bus_mean_resistance(
+def bus_mean_resistance(
     lines: DataFrame,
     bus_key: str = "from_bus",
     ohm_key: str = "resistance_pu",

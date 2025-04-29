@@ -2,6 +2,7 @@
 
 from pathlib import Path
 
+from power_flow import calc
 from power_flow.clean import filter_buses_by_id, get_buses_out_of_range
 from power_flow.load import load_csv_to_df
 
@@ -14,11 +15,13 @@ def main():
     buses_data_source = Path.cwd() / "data" / "buses.csv"
     lines_data_source = Path.cwd() / "data" / "lines.csv"
     buses_data = load_csv_to_df(buses_data_source)
-    _ = load_csv_to_df(lines_data_source)
+    lines = load_csv_to_df(lines_data_source)
     buses_with_invalid_voltage = get_buses_out_of_range(
         buses_data, col="voltage_pu", val_range=(0.95, 1.05)
     )
     _ = filter_buses_by_id(buses_data, buses_with_invalid_voltage["bus_id"].to_list())
+    lines["avg_resistance"] = calc.bus_mean_resistance(lines)
+    print(lines.head())
 
 
 if __name__ == "__main__":
