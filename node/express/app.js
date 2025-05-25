@@ -1,9 +1,17 @@
-const amount = 12;
+import os from "os";
 
-if (amount < 10){
-	console.log("Small number");
-} else {
-	console.log("Large number");
-}
+// info on current user
+const user = os.userInfo();
+console.log(user);
 
-console.log(`Hey it's my first node app!!!`);
+// System uptime (in seconds)
+console.log(`The system ${os.uptime()} in seconds`);
+
+const currentOs = {
+  name: os.type(),
+  release: os.release(),
+  totalMem: os.totalmem(),
+  freeMeme: os.freemem(),
+};
+
+console.log(currentOs);
