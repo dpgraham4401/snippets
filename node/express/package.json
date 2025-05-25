@@ -1,0 +1,12 @@
+{
+  "name": "node-express-tutorial",
+  "version": "0.1.0",
+  "description": "https://www.youtube.com/watch?v=Oe421EPjeBE&t=1s",
+  "license": "ISC",
+  "author": "David Graham",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "vitest"
+  }
+}
