@@ -34,8 +34,7 @@ async def main():
     # with ThreadPoolExecutor() as pool:
     #     results = pool.map(get_status_code, urls)
 
-    ### asyncio combined with threads --> about 5 seconds
-    # this is just a nicer API that using the ThreadPoolExecutor
+    ### asyncio combined with threads
     tasks = [asyncio.to_thread(get_status_code, url) for url in urls]
     results = await asyncio.gather(*tasks)
     print(results)
