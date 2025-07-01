@@ -97,8 +97,24 @@ function calculateUserDebt(...rest) {
     console.log(`Hello ${this.name}, you owe $${debt}`);
 }
 // `apply` accepts two args: the object to use as the context (`this`) and an array of arguments
-calculateUserDebt.apply(steve, [1000, 2345, 719]);
+calculateUserDebt.apply(steve, [1000, 2345, 719]); // Hello steve, you owe $4064
 
 // `call` is basically identical except it accepts a list of arguments instead of an array
-calculateUserDebt.call(steve, 1000, 2345, 719);
+calculateUserDebt.call(steve, 100, 450, 20); // Hello steve, you owe $570
+
+
+// Last, the `bing` method. This method is available to all functions, unlike `call` and `apply`
+// It returns a new function that ALWAYS has the context of the object passed in as the first argument
+
+const calculateSteveDebt = calculateUserDebt.bind(steve)
+calculateSteveDebt(50, 25, 15, 10); // Hello steve, you owe $100
+
+const joe = {
+    // Notice our object has a different name property
+    name: "joe",
+    // because we used `bing`, `this` will still refer to `steve`
+    calculateSteveDebt
+}
+
+joe.calculateSteveDebt(100, 200); // Hello steve, you owe $300
 
