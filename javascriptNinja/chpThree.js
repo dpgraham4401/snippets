@@ -41,4 +41,6 @@ const myFunction = function (x) {  // notice the lack of a name after 'function'
 function aDeclaredFunction() {}
 
 // A nice reminder, arrow functions are just syntactic sugar for function expressions
+// They have some special application for making sure the `this` context is preserved.
+// Arrow functions do not have their own `this` context, they remember teh value at the time of their definition! Whoa!
 const myArrowFunction = (x) => x * x;
