@@ -85,3 +85,20 @@ const ninja1 = new Ninja();
 console.log(`${ninja1.getThis() === ninja1}`) // true
 console.log(ninja1.foo); // "ninja"
 
+
+// Explicitly setting the function's context with `call` and `apply`
+const steve = {
+    name: "steve"
+}
+
+function calculateUserDebt(...rest) {
+    // We're using `this` but this function inherently has no property `name` in its context
+    const debt = rest.reduce((accumulated, current) => accumulated + current);
+    console.log(`Hello ${this.name}, you owe $${debt}`);
+}
+// `apply` accepts two args: the object to use as the context (`this`) and an array of arguments
+calculateUserDebt.apply(steve, [1000, 2345, 719]);
+
+// `call` is basically identical except it accepts a list of arguments instead of an array
+calculateUserDebt.call(steve, 1000, 2345, 719);
+
