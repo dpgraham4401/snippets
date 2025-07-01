@@ -65,3 +65,23 @@ ninjaWithAliasing(1, 2);
 // The "use strict" directive has a few other semantics, like requiring parameters to be unique
 // and some miscellaneous other things like use of `this`
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
+
+// Constructor Functions
+// A constructor function is just a function that is called with the `new` keyword
+// It typically is used to set up an object with properties via the `this` keyword
+
+// When we call a function with the `new` keyword, it does the following:
+// 1. Creates a new object
+// 2. Implicitly pass the new empty object as `this`, executing the function in the context of that object
+// 3. Return the new object (unless another object is returned, the new object will still be returned if we return a primitive).
+function Ninja() {
+    this.getThis = function() {
+        return this;
+    }
+    this.foo = "ninja";
+}
+
+const ninja1 = new Ninja();
+console.log(`${ninja1.getThis() === ninja1}`) // true
+console.log(ninja1.foo); // "ninja"
+
