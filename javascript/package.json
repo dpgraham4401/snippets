@@ -1,0 +1,12 @@
+{
+  "name": "jssnippets",
+  "version": "0.1.0",
+  "description": "Javascript snippets",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  }
+}
