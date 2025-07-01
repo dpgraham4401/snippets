@@ -35,3 +35,15 @@ class NinjaClass {
 }
 const myNinjaClass = new NinjaClass();
 myNinjaClass.ninjaFunction();
+
+// ARGUMENTS
+// In addition to `this`, functions also have an `arguments` object
+function ninjaWithArgs() {
+    console.log("arguments:", arguments);
+}
+ninjaWithArgs(1, 2, 3, "foo", "bar");
+// With the introduction of ES6 rest parameters, we don't need to use `arguments` as much
+function ninjaWithRest(...args) {
+    console.log("args:", args);
+}
+ninjaWithRest(1, 2, 3, "foo", "bar");
