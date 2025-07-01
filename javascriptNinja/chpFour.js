@@ -10,7 +10,7 @@ function ninjaFunction() {
   console.log("this.foo:", this.foo);
 }
 
-// The context provided in `this` could be another function
+// The context provided in `this` could be another function (the one calling it)
 function ninja() {
     this.foo = "baz";
     ninjaFunction(); 
@@ -47,3 +47,21 @@ function ninjaWithRest(...args) {
     console.log("args:", args);
 }
 ninjaWithRest(1, 2, 3, "foo", "bar");
+
+
+// Argument aliasing and the "use strict" directive
+// If we change the values in `arguements`, it will change the values of the parameters
+function ninjaWithAliasing(a, b) {
+    // "use strict";
+    console.log("Before:", a, b);
+    arguments[0] = 10;
+    arguments[1] = 20;
+    console.log("After:", a, b);
+}
+ninjaWithAliasing(1, 2);
+// We can prevent this behavior by using the "use strict" directive
+// uncomment the "use strict" line, the arguments will not change
+
+// The "use strict" directive has a few other semantics, like requiring parameters to be unique
+// and some miscellaneous other things like use of `this`
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
