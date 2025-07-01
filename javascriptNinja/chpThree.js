@@ -39,3 +39,6 @@ const myFunction = function (x) {  // notice the lack of a name after 'function'
 }
 // The alternative (common) is just called a 'function declaration'
 function aDeclaredFunction() {}
+
+// A nice reminder, arrow functions are just syntactic sugar for function expressions
+const myArrowFunction = (x) => x * x;
