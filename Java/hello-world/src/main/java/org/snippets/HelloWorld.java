@@ -1,4 +1,4 @@
-package main.java.org.snippets;
+package org.snippets;
 // Java packages follow a reverse domain. The package name should match the directory structure
 
 
@@ -8,4 +8,5 @@ public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
     }
+
 }
