@@ -32,4 +32,15 @@ int main() {
     }
     const int product = x * y;
     std::cout << "The product of " << x << " and " << y << " is: " << product << std::endl;
+
+    // Common variable types
+    bool isValid = true; // true of false
+    char grade = 'A'; // single character, enclosed in single quotes
+    unsigned short int foo = 65'535; // 0 to can use single quotes for readability, but not required
+    short int shortInt = -32'768; // to positive equivalent
+    long int longInt = -12'356'789;
+    long long longLongInt = -9'223'372'036'854'775'808; // 64-bit integer, can be used for large numbers
+    int myInt = 42; // whether it's 16 or 32 bits depends on the system, but it's usually 32 bits on modern systems
+
+    return EXIT_SUCCESS;
 }
