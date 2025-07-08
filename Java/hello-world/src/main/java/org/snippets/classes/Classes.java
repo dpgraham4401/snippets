@@ -1,15 +1,14 @@
 // This snippet looks at java classes, constructors, properties, and methods
-package main.java.org.snippets.classes;
+package org.snippets.classes;
 
 import java.util.Random;
 
 class MyClass {
 
+    public int c; // public access modifier, an instance variable, can be accessed from anywhere
+    protected int d; // protected access modifier,
     int a; // default access modifier, an instance variable
     private int b; // private access modifier, an instance variable
-    public int c; // public access modifier, an instance variable, can be accessed from anywhere
-
-    protected int d; // protected access modifier,
     // an instance variable, can be accessed from the same package or by subclasses
 
     // Constructors share the same name as the class
@@ -19,15 +18,6 @@ class MyClass {
         this.b = b;
         this.c = c;
         this.d = d;
-    }
-
-    // Getters and setters should be used to access and modify private instance variables
-    public int getB() {
-        return b; // this.b is also valid, but not necessary unless it's shadowed
-    }
-
-    public void setB(int b) {
-        this.b = b;
     }
 
     // generally speaking, it's good practice to use Factory Methods instead of
@@ -40,11 +30,18 @@ class MyClass {
         this.d = 0; // default value
     }
 
-
-
     // static method that returns an integer, can be called without instantiating
     public static int getNumber() {
         return new Random().nextInt();
+    }
+
+    // Getters and setters should be used to access and modify private instance variables
+    public int getB() {
+        return b; // this.b is also valid, but not necessary unless it's shadowed
+    }
+
+    public void setB(int b) {
+        this.b = b;
     }
 
 }
