@@ -1,27 +1,25 @@
 /**
- * Parts of a program
+ * Chapter 3: Using variables, declaring constants.
 */
 
-// Preprocessor directives
-// All start with a hash (#), they run before the compiler.
-#include <iostream> // often called 'hash include', 'sharp include', or 'pound include'
-// we use quotes ("") for local files and angle brackets (<>) for standard library files
-// A large number of includes can slow down compilation, however with C++20 modules, this is less of an issue.
+#include <iostream>
 
-// By convention, main returns an int, and 0 for success, -1 for error, used by OS.
 int main() {
-    // Can declare that we're using a namespace in a function or globally in a file.
-    using namespace std;
-    int nLoops;
-    cout << "Enter number of loops: ";
-    cin >> nLoops;
-    if (cin.fail()) {
-        cout << "Invalid input." << endl;
-        return EXIT_FAILURE; // or -1, same-same
-    }
-    for (int i = 0; i < nLoops; ++i) {
-        // "standard see-out and "standard see-in"
-        cout << "i = " << i << endl;
-    }
-    return EXIT_SUCCESS; // or 0, same-same
+    // Declare a variable
+    // <variableType> <variableName>
+    int a;
+
+    // Declaring and initializing
+    // <variableType> <variableName> = <value>
+    // It's good practice to initialize variables so we're not working with garbage values.
+    int b = 5;
+
+    int x = -1, y = -1;
+
+    std::cout << "Enter a positive integer for x: ";
+    std::cin >> x;
+    std::cout << "Enter a positive integer for y: ";
+    std::cin >> y;
+    const int product = x * y;
+    std::cout << "The product of " << x << " and " << y << " is: " << product << std::endl;
 }
