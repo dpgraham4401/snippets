@@ -6,10 +6,11 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "cython>=3.1.2",
+    "numpy>=2.3.1",
 ]
 
 [project.scripts]
-hello = "main:main"
+hello = "hello_cython.main:main"
 
 [build-system]
 requires = ["setuptools", "Cython"]
@@ -17,8 +18,14 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 ext-modules = [
-  {name = "hello", sources = ["hello.pyx"]}
+  {name = "hello_cython.hello", sources = ["src/hello_cython/hello.pyx"]},
+  {name = "hello_cython.call_c", sources = ["src/hello_cython/call_c.pyx"]}
 ]
 
 [tool.uv]
-cache-keys = [{ file = "pyproject.toml" }, { file = "hello.pyx"}, { git = { commit = true } }]
+cache-keys = [
+    { file = "pyproject.toml" },
+    { file = "src/hello_cython/hello.pyx"},
+    { file = "src/hello_cython/call_c.pyx"},
+    { git = { commit = true } }
+]
