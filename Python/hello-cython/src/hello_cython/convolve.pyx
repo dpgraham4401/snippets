@@ -1,4 +1,3 @@
-# Renamed module: convolve.pyx
 import cython
 import numpy as np
 
@@ -41,3 +40,4 @@ def naive_convolve(f, g):
                         value += f[v, w] * g[smid - s, tmid - t]
             h[x, y] = value
     return h
+

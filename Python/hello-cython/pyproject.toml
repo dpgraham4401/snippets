@@ -19,13 +19,13 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools]
 ext-modules = [
   {name = "hello_cython.hello", sources = ["src/hello_cython/hello.pyx"]},
-  {name = "hello_cython.call_c", sources = ["src/hello_cython/call_c.pyx"]}
+  {name = "hello_cython.convolve", sources = ["src/hello_cython/convolve.pyx"]}
 ]
 
 [tool.uv]
 cache-keys = [
     { file = "pyproject.toml" },
     { file = "src/hello_cython/hello.pyx"},
-    { file = "src/hello_cython/call_c.pyx"},
+    { file = "src/hello_cython/convolve.pyx"},
     { git = { commit = true } }
 ]
