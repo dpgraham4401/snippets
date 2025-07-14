@@ -2,7 +2,7 @@
  * Example Problem: create a sleep function that takes a number of milliseconds.
  */
 
-async function sleep(ms) {
+export async function sleep(ms) {
     // The trick here is simply create a new promise.
     // Promise constructor an 'executor', which is a function that accepts 2 callbacks
     // resolveFn, and rejectFn. Resolve is called (with the expected return value) to indicate success
@@ -24,5 +24,3 @@ async function main() {
     await sleep(1000)
     console.log("bye")
 }
-
-main();
