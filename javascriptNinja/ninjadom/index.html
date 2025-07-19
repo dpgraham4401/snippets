@@ -33,8 +33,19 @@
     <button type="button" class="btn-primary btn">Do Action</button>
     <!--  tutorial Inserting HTML elements (not in book)  -->
   </div>
+  <div id="domAttributes" class="my-2 card shadow-sm max-w-2/3 p-2 min-h-48 bg-white">
+    <!--  12.2 Accessing DOM attributes  -->
+    <div class="flex gap-1">
+      <button id="incrementProgress" type="button" class="btn-primary btn w-24">Increment</button>
+      <button id="resetProgress" type="button" class="btn-error btn w-24">Reset</button>
+    </div>
+    <div class="flex justify-center">
+      <progress id="myProgress" max="100" value="10" class="progress progress-success my-2 w-11/12"></progress>
+    </div>
+  </div>
 </main>
 <script src="/src/counter.ts" type="module"></script>
 <script src="/src/insertingHtml.ts" type="module"></script>
+<script src="/src/domAttr.ts" type="module"></script>
 </body>
 </html>
