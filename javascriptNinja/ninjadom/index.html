@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="bg-slate-50">
 <head>
-  <meta charset="UTF-8"/>
-  <link href="/vite.svg" rel="icon" type="image/svg+xml"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="UTF-8" />
+  <link href="/vite.svg" rel="icon" type="image/svg+xml" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>JS ninja: Chapters 12 - 15</title>
-  <link href="/src/style.css" rel="stylesheet"/>
+  <link href="/src/style.css" rel="stylesheet" />
 </head>
 <body class="p-8 font-sans">
 <header class="mb-8">
@@ -13,23 +13,28 @@
   <p>
     This page follows along with
     <a
-        class="link-hover link-primary"
-        href="https://www.amazon.com/Secrets-JavaScript-Ninja-John-Resig/dp/1617292850"
+      class="link-hover link-primary"
+      href="https://www.amazon.com/Secrets-JavaScript-Ninja-John-Resig/dp/1617292850"
     >
       Secrets of a JavaScript Ninja: 2<small class="text-sm">nd</small> edition
     </a>
     part 4 (chapters 12 - 15).
   </p>
 </header>
-<main class="p-4">
+<main class="p-4" id="main">
   <div>
     <button
-        id="counter"
-        type="button"
-        class="btn btn-secondary hover:btn-active">
+      id="counter"
+      type="button"
+      class="btn btn-secondary hover:btn-active">
     </button>
+  </div>
+  <div id="insertingHTML" class="my-2 card shadow-sm max-w-2/3 p-2 min-h-48 bg-white">
+    <button type="button" class="btn-primary btn">Do Action</button>
+    <!--  tutorial Inserting HTML elements (not in book)  -->
   </div>
 </main>
 <script src="/src/counter.ts" type="module"></script>
+<script src="/src/insertingHtml.ts" type="module"></script>
 </body>
 </html>
