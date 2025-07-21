@@ -1,4 +1,4 @@
-package org.snippets;
+package org.snippets.dsa;
 // Java packages follow a reverse domain. The package name should match the directory structure
 
 

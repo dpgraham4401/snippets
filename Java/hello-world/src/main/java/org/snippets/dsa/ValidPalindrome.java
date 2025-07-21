@@ -1,4 +1,4 @@
-package org.snippets;
+package org.snippets.dsa;
 
 /**
  * Given a string, check that it is a palindrome.

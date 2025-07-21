@@ -30,6 +30,7 @@ class MyClass {
         this.d = 0; // default value
     }
 
+
     // static method that returns an integer, can be called without instantiating
     public static int getNumber() {
         return new Random().nextInt();

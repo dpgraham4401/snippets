@@ -1,4 +1,4 @@
-package org.snippets;
+package org.snippets.dsa;
 
 /**
  * Given an array of distinct integers, sorted in ascending order, and a target value,
@@ -19,7 +19,7 @@ public class SimpleBinarySearch {
 
         while (l <= r) {
             int m = l + ((r - l) / 2);
-            if (nums[m] > target){
+            if (nums[m] > target) {
                 r = m - 1;
             } else if (nums[m] < target) {
                 l = m + 1;
@@ -27,6 +27,6 @@ public class SimpleBinarySearch {
                 return m;
             }
         }
-        return  -1;
+        return -1;
     }
 }

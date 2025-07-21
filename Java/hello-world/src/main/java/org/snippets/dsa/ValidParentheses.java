@@ -1,4 +1,4 @@
-package org.snippets;
+package org.snippets.dsa;
 
 import java.util.Map;
 import java.util.Stack;

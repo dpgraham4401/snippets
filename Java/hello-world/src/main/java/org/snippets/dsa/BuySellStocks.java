@@ -1,4 +1,4 @@
-package org.snippets;
+package org.snippets.dsa;
 
 /**
  * Given an array of integers, which represents the price of stocks through time,
@@ -22,13 +22,13 @@ public class BuySellStocks {
     public static int getMaxTransaction(int[] prices) {
         int l = 0, r = 1;
         int maxP = 0;
-        while (r < prices.length){
+        while (r < prices.length) {
             int diff = prices[r] - prices[l];
             if (diff > maxP) {
                 maxP = diff;
             }
             if (diff < 0) {
-                l  = r;
+                l = r;
             }
             r++;
         }
