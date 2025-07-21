@@ -11,7 +11,7 @@ import java.util.Iterator;
  * There are various concrete classes in the std lib of these three interfaces, such as
  * ArrayList, LinkedList, PriorityQueue, and HasSet.
  */
-public class IterableInterfaceExample {
+public class IterableExamples {
 
     public static void main(String[] args) {
         String[] myList = {"foo", "bar", "baz"};
