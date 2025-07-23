@@ -12,15 +12,16 @@ def is_palindrome(s: str) -> bool:
     return False
 
 def two_pointer_pal(s: str) -> bool:
-    tokens = list(s)
-    cleaned = ''.join(token for token in tokens if token.isalnum()).lower()
-    i = 0
-    n = len(cleaned) - 1
-    while i < n:
-        if cleaned[i] != cleaned[n]:
+    l = 0
+    r = len(s) -1
+    while l < r:
+        while l < r and not s[l].isalnum():
+            l += 1
+        while l < r and not s[r].isalnum():
+            r -= 1
+        if s[l].lower() != s[r].lower():
             return False
-        i += 1
-        n -= 1
+        l, r = l + 1, r - 1
     return True
 
 def run(s: str):
