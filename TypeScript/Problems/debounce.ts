@@ -13,22 +13,20 @@
  * can pass to clearTimeout to cancel the timer.
  */
 function debounce(fn: (...args: any[]) => any, ms: number) {
-    let timeout: null | number = null;
+    let timeout: number | undefined;
 
     return (...args: any[]) => {
-        // If there is a timeout already set, cancel it so the previous call won't be executed
         if (timeout) {
             clearTimeout(timeout)
         }
-        // Otherwise, set a timeout so fn(...args) is added to the event loop and executed after ms milliseconds
         timeout = setTimeout(() => {
             fn(...args)
         }, ms)
     }
 }
 
-const debouncedLog = debounce((msg) => console.log(msg), 500)
+const debouncedLog = debounce((msg) => console.log(msg), 100)
 
 debouncedLog("foo")
-debouncedLog("foobar")
-debouncedLog("foobar...baz")
+debouncedLog("bar")
+debouncedLog("baz") // baz should be the only one logged
