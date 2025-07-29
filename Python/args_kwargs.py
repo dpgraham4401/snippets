@@ -1,8 +1,9 @@
-# *args, **kwargs, and the meaning of the '*'
+"""*args, **kwargs, and the meaning of the '*'
 
-# args and kwargs (as often written and referred to) are an element of Python as a dynamic language
-# *args and **kwargs allow you to pass multiple arguments or keyword arguments to a function
-# This is so easy in a dynamic lang like python, it's not possible in some languages.
+args and kwargs (as often written and referred to) are an element of Python as a dynamic language
+*args and **kwargs allow you to pass multiple arguments or keyword arguments to a function
+This is easy in a dynamic language like python, it's not possible in some languages.
+"""
 
 # Say we have this dict
 denominations = {
@@ -18,8 +19,8 @@ def print_bill(name):
     print(f"{name}: {denominations[name]}")
 
 
-# instead of just allowing 2 arguments like so
-def get_one_denomination(name: str):
+# instead of just allowing a finite set of arguments like so
+def get_one_denomination(name: str) -> None:
     print_bill(name)
 
 
@@ -48,3 +49,18 @@ def display_kwargs(**kwargs):
 
 # keyword args are passed as key=value pairs
 display_kwargs(foo="bar", bar="foo")
+
+# We can use '*' to denote parameters as keyword only arguments
+# The order matters as well, we can't have optional (ones with default values) before kwargs without
+# This 
+def export_data(data: list, *, format: str, key1: int = 1, key2: int = 2):
+    """
+    Here, 
+    1. 'data' arg is mandatory, 
+    2. 'format' is mandatory as a keyword arg
+    3. The 'keys' are optional but only as keyword args
+
+    This keeps our function call very readable, like so.
+    I know what data is being exported, and the format of the output
+    export_data(my_data, format="CSV")
+    """

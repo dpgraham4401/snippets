@@ -24,11 +24,12 @@ pop_2017 = f"https://api.census.gov/data/2017/pep/population?get=POP&for=us:*&ke
 
 async def example_using_executor():
     """
-    This seems to be the most simple and straight forward way to do something
-    like execute synchronous
-    code (such as the request library) inside an async function (using async/await syntax)
+    We don't always need to go down the the 'futures' level, we can often stay at a higher
+    level with tasks.
+    They can be used to run synchronous code (such as the request library) 
+    inside an async function (using async/await syntax)
     """
-    loop = asyncio.get_event_loop()  # 'grab a handle for event loop'
+    loop = asyncio.get_event_loop()  # 'grab a handle for event loop', there can be only 1 per thread.
     future1 = loop.run_in_executor(None, requests.get, pop_2021)  # run in the said event loop
     future2 = loop.run_in_executor(
         None, requests.get, pop_2019

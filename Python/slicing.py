@@ -1,5 +1,10 @@
-# List slicing
-# a way of access objects and ranges of objects from a list
+"""
+List slicing
+a way of access objects and ranges of objects from a list
+Couple things to remember:
+    1. Python is 0-indexed (starts with zero, nothing new)
+    2. slicing and range are non-inclusive
+"""
 
 foo = [0, 1, 2, 3, 4, 5, 6, 7]
 
@@ -33,3 +38,11 @@ print("baz is bar", baz is bar)  # -> False
 # Lastly, a 'Stride' or 'step' can be used to set the step increment
 print(foo[0:7:2])  # -> [0, 2, 4, 6]
 # starting at index 0, going to index 7, get every other element (2)
+
+
+"""
+Using range
+It's like range and len are designed to go together to loop over an iterable
+"""
+for i in range(len(foo)):
+    print(foo[i])
