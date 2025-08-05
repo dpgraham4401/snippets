@@ -19,7 +19,20 @@ auto get_size_of(int x) -> int {
     return sizeof(x);
 }
 
-void using_variables() {
+/**
+ * Using list/uniform initialization
+ * We can accidentally narrow a type at initialization and round part of our data.
+ * C++ version 11 allows us to init with {}, it's the recommended method of init variables.
+ */
+void uniform_init() {
+    float temperature = 79.23;
+    int temp = temperature; // decimal values will be lost, c++ will warn but not error
+    std::cout << "rounded temp " << temp;
+    // int errorTemp{temperature}; // will not compile
+    float listTemp{temperature}; // OK
+}
+
+void variable_types() {
     // Declare a variable
     // <variableType> <variableName>
     // By convention, variables use camelCase names. snake_case is ok, just depends on the team's style guide.
@@ -52,10 +65,7 @@ void using_variables() {
 }
 
 auto main () -> int {
-    constexpr int myInt = 42; // whether it's 16 or 32 bits depends on the system, but it's usually 32 bits on modern systems
-
-    const int sizeOfMyInt = get_size_of(myInt);
-    std::cout << "Size of (bytes) " << sizeOfMyInt << std::endl;
+    uniform_init();
 
     return EXIT_SUCCESS;
 }
