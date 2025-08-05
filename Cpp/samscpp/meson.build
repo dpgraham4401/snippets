@@ -4,4 +4,6 @@ project('samscpp', 'cpp',
 
 samscpp = executable('samscpp', 'main.cpp', install : true)
 
+types = executable('types', 'lesson3/types.cpp', install : true)
+
 test('test', samscpp)

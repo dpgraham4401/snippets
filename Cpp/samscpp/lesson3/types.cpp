@@ -2,7 +2,9 @@
  * Lesson 3: variables, constants, and types
 */
 
+#include <compare>
 #include <iostream>
+#include <vector>
 
 // Global constants
 const int MAX_SIZE = 100;
@@ -28,8 +30,30 @@ void uniform_init() {
     float temperature = 79.23;
     int temp = temperature; // decimal values will be lost, c++ will warn but not error
     std::cout << "rounded temp " << temp;
-    // int errorTemp{temperature}; // will not compile
-    float listTemp{temperature}; // OK
+    // int error_temp{temperature}; // will not compile
+    float list_temp{temperature}; // OK
+}
+
+template <typename T>
+
+/**
+ * The C++ compiler is smart and can save us some time by inferring types with 'auto'
+ *
+ * Right off the bat, we can use 'auto', along with the trailing return type.
+ * The trailing return type (-> type) has the following advantages:
+ * 1. readability. It's nice, like a python type hint
+ * 2. Allows us to use a 'template' in the return type
+ */
+auto type_inference_with_auto(const T& x, const T& y) -> T {
+    auto my_int = 1; // C++ figures this is an int
+    std::vector<float> temps {97.32, 85.38, 99.55}; // we can use uniform init to create a vector as well
+    // auto can make range iteration over a iterable easier
+    for (auto temp : temps) {
+        std::cout << "temp: " << temp <<std::endl;
+    }
+    return x + y;
+
+
 }
 
 void variable_types() {
@@ -41,7 +65,7 @@ void variable_types() {
     // Declaring and initializing
     // <variableType> <variableName> = <value>
     // It's good practice to initialize variables so we're not working with garbage values.
-    int secondNumber = 5;
+    int second_number = 5;
 
     int x = -1, y = -1;
 
@@ -56,16 +80,19 @@ void variable_types() {
     std::cout << "The product of " << x << " and " << y << " is: " << product << std::endl;
 
     // Common variable types
-    bool isValid = true; // true of false
+    bool is_valid = true; // true of false
     char grade = 'A'; // single character, enclosed in single quotes
     unsigned short int foo = 65'535; // 0 to can use single quotes for readability, but not required
-    short int shortInt = -32'768; // to positive equivalent
-    long int longInt = -12'356'789;
-    long long longLongInt = -9'223'372'036'854'775'808; // 64-bit integer, can be used for large numbers
+    short int short_int = -32'768; // to positive equivalent
+    long int long_int = -12'356'789;
+    long long long_long_int = -9'223'372'036'854'775'808; // 64-bit integer, can be used for large numbers
 }
 
 auto main () -> int {
-    uniform_init();
+    auto x = 42;
+    auto y = 42;
+    auto result = type_inference_with_auto(x, y);
+    std::cout << "Result: " << result << std::endl;
 
     return EXIT_SUCCESS;
 }
