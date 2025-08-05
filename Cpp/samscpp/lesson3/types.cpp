@@ -67,7 +67,8 @@ void variable_types() {
     // It's good practice to initialize variables so we're not working with garbage values.
     int second_number = 5;
 
-    int x = -1, y = -1;
+    int x = -1;
+    int y = -1;
 
     std::cout << "Enter a positive integer for x: ";
     std::cin >> x;
@@ -89,9 +90,9 @@ void variable_types() {
 }
 
 auto main () -> int {
-    auto x = 42;
-    auto y = 42;
-    auto result = type_inference_with_auto(x, y);
+    auto the_answer = 42;
+    auto the_answer_again = 42;
+    auto result = type_inference_with_auto(the_answer, the_answer_again);
     std::cout << "Result: " << result << std::endl;
 
     return EXIT_SUCCESS;
