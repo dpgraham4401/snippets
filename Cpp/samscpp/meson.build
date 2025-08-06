@@ -6,4 +6,7 @@ samscpp = executable('samscpp', 'main.cpp', install : true)
 
 types = executable('types', 'lesson3/types.cpp', install : true)
 
+
+arrays = executable('arrays', 'lesson4/arrays.cpp', install : true)
+
 test('test', samscpp)
