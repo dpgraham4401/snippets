@@ -6,11 +6,18 @@
 
 template <size_t N, typename T>
 auto display_array(T (&arr)[N]) {
-    std::cout << "Array: ";
     for (const auto elem : arr) {
-        std::cout << elem << " ";
+        std::cout << elem << ", ";
     }
     std::cout << std::endl;
+}
+
+// 2D array
+template <size_t N, size_t M, typename T>
+void display_array(T (&arr)[N][M]) {
+    for (size_t i = 0; i < N; ++i) {
+        display_array(arr[i]); // call 1D version for each row
+    }
 }
 
 /**
@@ -33,6 +40,18 @@ auto static_arrays() {
     display_array(temps);
 }
 
+/**
+ * Arrays can be made up of more arrays
+ * C++ actually stores the multidimensional array in the same way as a 1d array.
+ * C++ just maps the 1D memory array to it's x-D representation.
+ */
+auto multidimensional_arrays() {
+    // An array with 3 rows, and 2 columns
+    float data[3][2] = {{1.2, 3.3}, {2.5, 5.2}, {8.5, 7.4}};
+    display_array(data);
+
+}
+
 int main() {
-    static_arrays();
+    multidimensional_arrays();
 }
