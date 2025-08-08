@@ -11,4 +11,7 @@ types = executable('types', 'lesson3/types.cpp', install : true)
 arrays = executable('arrays', 'lesson4/arrays.cpp', install : true)
 strings = executable('strings', 'lesson4/strings.cpp', install : true)
 
+# Lesson 5
+arrays = executable('ops', 'lesson5/operators.cpp', install : true)
+
 test('test', samscpp)
