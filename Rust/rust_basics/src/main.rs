@@ -19,13 +19,13 @@ fn main() {
     // 16-bit	i16  	u16                 // 64-bit	___ 	f64 // double precision
     // 32-bit	i32 	u32 (standard choice for integer)
 
-    // types are declared with ':' after the variable name
+    // types are declared with ':' after the variable name, reads nicer than c/c++ bool foo = true;
     let bool_value: bool = true; // rust_fmt expects snake case for most variables
     println!("a boolean value: {}", bool_value);
     let x: f32 = 3.14;
     println!("single precision value: {}", x);
 
-    // Rust has char types, that are unicode by default
+    // Rust has char types, that are Unicode by default
     let z = 'z'; // char literals use single quotes
     let my_string = "string literal"; // string use double quotes (!!!)
     let heart_eyed_cat = '😻';
@@ -43,7 +43,7 @@ fn main() {
         println!("{}", my_array[i]);
     }
 
-    // calling a function declared at bottom of file (i guess they're 'elevated')
+    // calling a function declared at bottom of file (they're not 'hoisted' but this still works)
     hello_string(my_string);
     let x = add_one(2);
     println!("this value was returned from a function: {}", x);
