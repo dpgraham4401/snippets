@@ -17,4 +17,7 @@ arrays = executable('ops', 'lesson5/operators.cpp', install : true)
 # lesson 6
 conditions = executable('conditions', 'lesson6/conditions.cpp', install: true)
 
+# lesson 7
+fns = executable('fns', 'lesson7/fns.cpp', install: true)
+
 test('test', samscpp)
