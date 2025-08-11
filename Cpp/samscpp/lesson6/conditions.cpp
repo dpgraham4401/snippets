@@ -93,7 +93,7 @@ auto ternerary_op() -> void {
 /**
  * while loops are also pretty standard.
  *
- * We also have the do-while loop, which is useful when 
+ * We also have the do-while loop, which is useful when
  * we want the while loop to execute at least once.
  */
 auto using_while() -> void {
@@ -112,7 +112,7 @@ auto using_while() -> void {
 		std::cin >> input;
 		// Keep going as long as input is not equal to 1
 	} while (input != 1);
-	
+
 }
 
 
