@@ -30,7 +30,7 @@ struct Foo {
  * if you need to pass in lots of values, it may make sense to group related parameters
  * into a data struct (also consider where it needs to be passed by reference).
  */
-Foo multiple_input_output(std::string callout, Foo foo) {
+Foo multiple_input_output(const std::string& callout, const Foo& foo) {
 	std::cout << callout << std::endl;
 	// Unlike many languages, the `new` keyword is not used to just create new objects.
 	// `new` in C++ is used for allocating memory on the heap.
@@ -49,11 +49,11 @@ Foo multiple_input_output(std::string callout, Foo foo) {
  *
  * This is a poor example, but focus on the overloading fn part.
  */
-auto sum(int x, int y) -> int {
+auto sum(const int x, const int y) -> int {
 	return x + y;
 }
 
-auto sum(int x, int y, int z) -> int {
+auto sum(const int x, const int y, const int z) -> int {
 	return x + y + z;
 }
 
@@ -65,17 +65,19 @@ auto sum(int x, int y, int z) -> int {
  *
  * Use the `&` operator to indicate a parameter expects a reference.
  */
-int passing_by_reference(Foo& foo) {
-	int duh_num = foo.num;
+int passing_by_reference(const Foo& foo) {
+	const int duh_num = foo.num;
 	std::cout << "pass by ref: " << duh_num << std::endl;
 	return duh_num;
 }
 
 int main() {
+	// // Basic functions and default parameters
 	// double radius = 4.0;
 	// auto area = get_circle_area(radius); // note, we're not supplying pi... but we could add more precision.
 	// std::cout << area << std::endl;
 
+	// // Using structs to group related parameters
 	// Foo my_foo = Foo{"bar", 1};
 	// auto new_foo = multiple_input_output("yaahooo!", my_foo); // note we're not passing by ref
 	// std::cout << new_foo.num << std::endl;
