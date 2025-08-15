@@ -4,9 +4,11 @@
  * More of a refresher than anything, but it's good to take the time to learn what's new in C++.
  */
 
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <memory>
+#include <vector>
 
 
 /**
@@ -79,9 +81,37 @@ int passing_by_reference(const Foo &foo) {
  *
  * They're best used sparingly, modern C++ have various performance optimizations that may outweigh
  * the complexity and compiling for memory restricted runtimes may even reject these (or so I read).
+ *
+ * These are not the same thing as lambda functions, a more common concept.
  */
 float double_value(const float val) {
 	return val * val;
+}
+
+
+/**
+ * Lambda functions.
+ *
+ * Also called "Lambda Expressions." Lambda functions are commonly used by the Standard Template Library (STL)
+ * such as within a `sort` function.
+ */
+void simple_lambda_usage() {
+	std::vector<int> nums;
+	nums.push_back(120);
+	nums.push_back(-1);
+	nums.push_back(250);
+	nums.push_back(500);
+	nums.push_back(375);
+
+	// Here's our first usage, using the for_each function
+	std::cout << "Unsorted vector" << std::endl;
+	std::for_each(nums.begin(), nums.end(), [](int element) { std::cout << element << " "; });
+
+	// Here, we're using a lambda fn for the sort std lib algorithm
+	std::ranges::sort(nums, [](int num1, int num2) { return (num2 < num1); });
+
+	std::cout << "Sorted vector" << std::endl;
+	std::ranges::for_each(nums, [](int element) { std::cout << element << " "; });
 }
 
 int main() {
@@ -101,8 +131,11 @@ int main() {
 	// int sum2 = sum(x, y, z);
 	// std::cout << "sum1: " << sum1 << " sum2: " << sum2 << std::endl;
 
-	// Passing by reference
-	std::unique_ptr<Foo> my_foo = std::make_unique<Foo>(Foo{"foo", 3});
-	int result = passing_by_reference(*my_foo);
-	std::cout << "result: " << result << std::endl;
+	// // Passing by reference
+	// std::unique_ptr<Foo> my_foo = std::make_unique<Foo>(Foo{"foo", 3});
+	// int result = passing_by_reference(*my_foo);
+	// std::cout << "result: " << result << std::endl;
+
+	// Using Lambda functions
+	simple_lambda_usage();
 }
