@@ -25,7 +25,6 @@ target-version = "py312"
 line-length = 100
 
 
-
 [tool.ruff.lint]
 select = [
     "F", # pyflakes
@@ -41,7 +40,6 @@ select = [
     "PD", # pandas-vet
     "PT", # flake-pytest-style
     "PTH", # flake8-use-pathlib
-    "SIM", # flake8-simplify
     "TID", # flake8-tidy-imports
 ]
 extend-ignore = [
