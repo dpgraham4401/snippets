@@ -30,13 +30,12 @@ struct Foo {
  * if you need to pass in lots of values, it may make sense to group related parameters
  * into a data struct (also consider where it needs to be passed by reference).
  */
-Foo multiple_input_output(const std::string& callout, const Foo& foo) {
+Foo multiple_input_output(const std::string &callout, const Foo &foo) {
 	std::cout << callout << std::endl;
 	// Unlike many languages, the `new` keyword is not used to just create new objects.
 	// `new` in C++ is used for allocating memory on the heap.
 	Foo new_foo = Foo{foo.name, foo.num + 1};
 	return new_foo;
-
 }
 
 /**
@@ -58,17 +57,31 @@ auto sum(const int x, const int y, const int z) -> int {
 }
 
 
-
 /**
  * If we have a large (memory) object, it's inefficient to try and 
  * copy a huge chunk of memory, so instead we pass a reference.
  *
  * Use the `&` operator to indicate a parameter expects a reference.
  */
-int passing_by_reference(const Foo& foo) {
+int passing_by_reference(const Foo &foo) {
 	const int duh_num = foo.num;
 	std::cout << "pass by ref: " << duh_num << std::endl;
 	return duh_num;
+}
+
+/**
+ * Inline Functions.
+ *
+ * C++ has the concept of `inline` functions. Inline functions are an optimization
+ * that reduces the overhead of a function call (adding a fn call to the stack).
+ * C++ does that at compile time by replacing the inline function call with the contents
+ * of the function where it is called.
+ *
+ * They're best used sparingly, modern C++ have various performance optimizations that may outweigh
+ * the complexity and compiling for memory restricted runtimes may even reject these (or so I read).
+ */
+float double_value(const float val) {
+	return val * val;
 }
 
 int main() {
@@ -87,7 +100,7 @@ int main() {
 	// int sum1 = sum(x, y);
 	// int sum2 = sum(x, y, z);
 	// std::cout << "sum1: " << sum1 << " sum2: " << sum2 << std::endl;
-	
+
 	// Passing by reference
 	std::unique_ptr<Foo> my_foo = std::make_unique<Foo>(Foo{"foo", 3});
 	int result = passing_by_reference(*my_foo);
