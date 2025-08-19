@@ -1,8 +1,4 @@
-package org.vimpiarte.store.services;
-
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+package org.vimpiarte.store.basicBeans;
 
 //@Service
 public class OrderService {

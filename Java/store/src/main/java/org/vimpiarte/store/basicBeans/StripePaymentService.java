@@ -1,8 +1,6 @@
-package org.vimpiarte.store.services;
+package org.vimpiarte.store.basicBeans;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

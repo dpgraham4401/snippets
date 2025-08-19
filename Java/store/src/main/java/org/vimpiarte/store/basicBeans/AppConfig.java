@@ -1,14 +1,8 @@
-package org.vimpiarte.store;
+package org.vimpiarte.store.basicBeans;
 
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
-import org.vimpiarte.store.services.OrderService;
-import org.vimpiarte.store.services.PaymentService;
-import org.vimpiarte.store.services.PaypalPaymentService;
-import org.vimpiarte.store.services.StripePaymentService;
 
 /**
  * The spring bean annotations are great, but we can also configure

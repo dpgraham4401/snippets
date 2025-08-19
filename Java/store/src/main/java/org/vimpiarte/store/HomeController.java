@@ -1,9 +1,8 @@
 package org.vimpiarte.store;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.vimpiarte.store.services.OrderService;
+import org.vimpiarte.store.basicBeans.OrderService;
 
 @Controller
 public class HomeController {

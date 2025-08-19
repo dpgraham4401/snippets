@@ -1,6 +1,10 @@
 spring:
   application:
     name: store
+  datasource:
+    url: jdbc:postgresql://localhost:5432/store
+    username: storeuser
+    password: password
 stripe:
   enabled: true
   apiUrl: https://api.stripe.com

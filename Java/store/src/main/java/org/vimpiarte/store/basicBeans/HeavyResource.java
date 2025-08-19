@@ -1,4 +1,4 @@
-package org.vimpiarte.store.services;
+package org.vimpiarte.store.basicBeans;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

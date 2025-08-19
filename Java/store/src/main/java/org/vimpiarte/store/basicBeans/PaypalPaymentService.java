@@ -1,8 +1,7 @@
-package org.vimpiarte.store.services;
+package org.vimpiarte.store.basicBeans;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import org.springframework.stereotype.Service;
 
 //@Service("paypal")
 public class PaypalPaymentService implements PaymentService {
