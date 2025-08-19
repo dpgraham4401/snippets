@@ -4,6 +4,7 @@ import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.vimpiarte.store.services.OrderService;
 import org.vimpiarte.store.services.PaymentService;
 import org.vimpiarte.store.services.PaypalPaymentService;
@@ -27,7 +28,17 @@ public class AppConfig {
         return new StripePaymentService();
     }
 
+    /**
+     * Spring has a few scopes.
+     * We set it with the @Scope annotations
+     * <p>
+     * Singleton - which is the default, for the lifespan of the app running
+     * prototype - A bean is created every time it is requested from the spring IOC.
+     * request - A new bean is created for each HTTP request.
+     * session - A bean for each user session.
+     */
     @Bean
+//    @Scope("prototype")
     public OrderService orderService() {
         // Again, there could be conditional logic here.
         // Allowing us full control over bean creation.

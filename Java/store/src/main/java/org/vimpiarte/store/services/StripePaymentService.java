@@ -15,8 +15,8 @@ import java.util.List;
  * Reading values from externalized configuration.
  * We can use the @Value decorator to pull values from the application.properties
  */
-//@Service("stripe")
-//@Primary
+//@Service("stripe") // Service is just wrapper for @Component but can make things more readable.
+//@Primary // set this as the default PaymentService bean
 public class StripePaymentService implements PaymentService {
 
     @Value("${stripe.enabled}")

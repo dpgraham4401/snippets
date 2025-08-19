@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 public class OrderService {
     private PaymentService paymentService;
 
-
     public OrderService(PaymentService paymentService) {
         this.paymentService = paymentService;
+        // By default, beans are created at start.
+        // This is output in the console when the web application starts.
+        System.out.println("Orderservice created");
     }
 
     public void placeOrder() {
