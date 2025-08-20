@@ -20,4 +20,8 @@ conditions = executable('conditions', 'lesson6/conditions.cpp', install: true)
 # lesson 7
 fns = executable('fns', 'lesson7/fns.cpp', install: true)
 
+
+# lesson 8
+fns = executable('point', 'lesson8/pointers.cpp', install: true)
+
 test('test', samscpp)
