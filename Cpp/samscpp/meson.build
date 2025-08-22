@@ -30,4 +30,8 @@ structs = executable('structs', 'lesson9/cpp_structs.cpp', install : true)
 # lesson 10
 inheritance = executable('inheritance', 'lesson10/inheritance.cpp', install : true)
 
+# lesson 11
+poly = executable('poly', 'lesson11/polymorphism.cpp', install : true)
+abc = executable('abc', 'lesson11/abc.cpp', install : true)
+
 test('test', samscpp)
