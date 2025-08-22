@@ -15,13 +15,16 @@ strings = executable('strings', 'lesson4/strings.cpp', install : true)
 arrays = executable('ops', 'lesson5/operators.cpp', install : true)
 
 # lesson 6
-conditions = executable('conditions', 'lesson6/conditions.cpp', install: true)
+conditions = executable('conditions', 'lesson6/conditions.cpp', install : true)
 
 # lesson 7
-fns = executable('fns', 'lesson7/fns.cpp', install: true)
-
+fns = executable('fns', 'lesson7/fns.cpp', install : true)
 
 # lesson 8
-fns = executable('point', 'lesson8/pointers.cpp', install: true)
+fns = executable('point', 'lesson8/pointers.cpp', install : true)
+
+# lesson 9
+cls = executable('cls', 'lesson9/classes_obj.cpp', install : true)
+structs = executable('structs', 'lesson9/cpp_structs.cpp', install : true)
 
 test('test', samscpp)
