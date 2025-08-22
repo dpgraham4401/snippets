@@ -27,4 +27,7 @@ fns = executable('point', 'lesson8/pointers.cpp', install : true)
 cls = executable('cls', 'lesson9/classes_obj.cpp', install : true)
 structs = executable('structs', 'lesson9/cpp_structs.cpp', install : true)
 
+# lesson 10
+inheritance = executable('inheritance', 'lesson10/inheritance.cpp', install : true)
+
 test('test', samscpp)
