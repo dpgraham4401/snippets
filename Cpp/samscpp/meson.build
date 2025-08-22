@@ -34,4 +34,8 @@ inheritance = executable('inheritance', 'lesson10/inheritance.cpp', install : tr
 poly = executable('poly', 'lesson11/polymorphism.cpp', install : true)
 abc = executable('abc', 'lesson11/abc.cpp', install : true)
 
+# lesson 14
+macros = executable('macros', 'lesson14/macros.cpp', install : true)
+
+
 test('test', samscpp)
