@@ -1,0 +1,118 @@
+{
+  "manifestTrackingNumber": "XYZ1234567890",
+  "manifestType": "Data+Image",
+  "generator": {
+    "epaId": "GA1234567890",
+    "name": "Acme Electronics Recycling",
+    "address": {
+      "street": "1234 Recycle Way",
+      "city": "Columbia",
+      "state": "SC",
+      "zip": "29201",
+      "country": "USA"
+    },
+    "contact": {
+      "name": "Jane Doe",
+      "phone": "803-555-1212",
+      "email": "jane.doe@acmerecycling.com"
+    }
+  },
+  "transporters": [
+    {
+      "sequenceNumber": 1,
+      "epaId": "TX0987654321",
+      "name": "Fast Transport Co.",
+      "address": {
+        "street": "4321 Carrier Rd.",
+        "city": "Dallas",
+        "state": "TX",
+        "zip": "75001",
+        "country": "USA"
+      },
+      "contact": {
+        "name": "John Smith",
+        "phone": "214-555-9876",
+        "email": "john.smith@fasttransport.com"
+      }
+    },
+    {
+      "sequenceNumber": 2,
+      "epaId": "FL1234567890",
+      "name": "Reliable Haulers Inc.",
+      "address": {
+        "street": "7890 Haul Rd.",
+        "city": "Orlando",
+        "state": "FL",
+        "zip": "32801",
+        "country": "USA"
+      },
+      "contact": {
+        "name": "Emily Clark",
+        "phone": "407-555-4321",
+        "email": "emily.clark@reliablehaulers.com"
+      }
+    }
+  ],
+  "designatedFacility": {
+    "epaId": "CA1122334455",
+    "name": "West Coast E-Waste Processor",
+    "address": {
+      "street": "5678 Processing Ave.",
+      "city": "Los Angeles",
+      "state": "CA",
+      "zip": "90001",
+      "country": "USA"
+    },
+    "contact": {
+      "name": "Ana Martinez",
+      "phone": "310-555-2468",
+      "email": "ana.martinez@westprocessor.com"
+    }
+  },
+  "wasteItems": [
+    {
+      "lineItem": 1,
+      "description": "Used computer monitors (CRT)",
+      "hazardousWasteCode": "D004",
+      "quantity": {
+        "amount": 50,
+        "unit": "kg"
+      },
+      "packaging": "Boxes",
+      "dotClass": "9",
+      "dotIdNumber": "UN3077",
+      "managementMethodCode": "RECY",
+      "notes": "Contains heavy metals"
+    }
+  ],
+  "signatures": {
+    "generator": {
+      "name": "Jane Doe",
+      "dateSigned": "2025-08-26T10:00:00-04:00",
+      "signatureType": "Electronic"
+    },
+    "transporter": {
+      "name": "John Smith",
+      "dateSigned": "2025-08-27T08:30:00-04:00",
+      "signatureType": "Electronic"
+    },
+    "designatedFacility": {
+      "name": "Ana Martinez",
+      "dateSigned": "2025-08-28T14:15:00-04:00",
+      "signatureType": "Electronic"
+    }
+  },
+  "images": [
+    {
+      "imageType": "ManifestCopy",
+      "fileName": "manifest_XYZ1234567890.png",
+      "mimeType": "image/png",
+      "contentBase64": "iVBORw0KGgoAAAANSUhEUgAA..."
+    }
+  ],
+  "metadata": {
+    "submissionDate": "2025-08-26T10:05:00-04:00",
+    "submittedBy": "Acme Industry System",
+    "version": "1.0"
+  }
+}
