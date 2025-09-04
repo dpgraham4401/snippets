@@ -1,12 +1,12 @@
 -- Create the tags table
-CREATE TABLE tags
+CREATE TABLE if not exists tags
 (
     id   SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 
 -- Create the user_tags join table
-CREATE TABLE user_tags
+CREATE TABLE if not exists user_tags
 (
     user_id BIGINT NOT NULL,
     tag_id  INT NOT NULL,

@@ -1,12 +1,15 @@
 package org.vimpiarte.store.dataAccess.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@ToString
 @Table(name = "addresses")
 public class Address {
     @Id
@@ -20,6 +23,14 @@ public class Address {
     @Column(name = "city")
     private String city;
 
+    @Column(name = "state")
+    private String state;
+
     @Column(name = "zip")
     private String zip;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private User user;
 }
