@@ -11,3 +11,6 @@ stripe:
   timeout: 1000
   supported-currencies: USD,EUR,GBP
 payment-gateway: paypal
+externalJson:
+  service:
+    url: https://jsonplaceholder.typicode.com/
