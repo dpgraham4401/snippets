@@ -11,7 +11,7 @@ import org.springframework.http.HttpHeaders;
 import java.util.UUID;
 
 @Component
-public class ToDoJsonApiProxy {
+public class ToDoJsonApiProxy implements ToDoProxy {
     private final RestTemplate rest;
 
     @Value("${externalJson.service.url}")

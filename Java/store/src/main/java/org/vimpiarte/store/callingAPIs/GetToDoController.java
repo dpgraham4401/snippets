@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ExternalApiController {
+public class GetToDoController {
 
-    private ToDoJsonApiProxy api;
+    private final ToDoProxy api;
 
-    public ExternalApiController(ToDoJsonApiProxy api) {
+    public GetToDoController(ToDoProxy api) {
         this.api = api;
     }
 
