@@ -1,5 +1,5 @@
 alter table users
-drop column state;
+drop column if exists state;
 
 alter table addresses
-    add state varchar(255) not null;
+    add column if not exists state varchar(255) null;

@@ -1,4 +1,4 @@
-CREATE TABLE profiles
+CREATE TABLE if not exists profiles
 (
     id               BIGINT PRIMARY KEY,
     bio              TEXT,
