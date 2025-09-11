@@ -3,6 +3,7 @@ package org.vimpiarte.store;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.vimpiarte.store.dataAccess.models.Address;
+import org.vimpiarte.store.dataAccess.models.Tag;
 import org.vimpiarte.store.dataAccess.models.User;
 
 @SpringBootApplication
@@ -17,14 +18,7 @@ public class StoreApplication {
                 .password("password")
                 .build();
 
-        var address = Address.builder()
-                .street("street 123")
-                .city("Dallas")
-                .state("TX")
-                .zip("12345")
-                .build();
-
-        user.addAddress(address);
+        user.addTag("Tag 1");
         System.out.println(user);
     }
 
