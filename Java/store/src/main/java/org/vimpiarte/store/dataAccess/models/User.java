@@ -32,6 +32,9 @@ public class User {
     @Builder.Default // needed to initialize the list when using the builder
     private List<Address> addresses = new ArrayList<>();
 
+    @OneToOne(mappedBy = "user")
+    private Profile profile;
+
     // The User model is the 'owner' of the relationship
     // in One-to-many relationships, the 'owner' is usually the table
     // with the foreign key, but with M2M, either could be.

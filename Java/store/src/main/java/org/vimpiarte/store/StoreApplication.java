@@ -3,6 +3,7 @@ package org.vimpiarte.store;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.vimpiarte.store.dataAccess.models.Address;
+import org.vimpiarte.store.dataAccess.models.Profile;
 import org.vimpiarte.store.dataAccess.models.Tag;
 import org.vimpiarte.store.dataAccess.models.User;
 
@@ -19,6 +20,14 @@ public class StoreApplication {
                 .build();
 
         user.addTag("Tag 1");
+
+        var profile = Profile.builder()
+                .bio("bio")
+                .build();
+        user.setProfile(profile);
+        profile.setUser(user);
+
+        System.out.println(profile);
         System.out.println(user);
     }
 

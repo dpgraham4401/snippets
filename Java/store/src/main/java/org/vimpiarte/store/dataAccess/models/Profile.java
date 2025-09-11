@@ -1,8 +1,7 @@
 package org.vimpiarte.store.dataAccess.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -10,6 +9,10 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
 @Table(name = "profiles")
 public class Profile {
     @Id
@@ -23,9 +26,16 @@ public class Profile {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "date_of_birth" )
+    @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
-    @Column(name = "loyalty_points" )
+    @Column(name = "loyalty_points")
     private Integer loyaltyPoints;
+
+    // profile is the owner b/c a profile knows about a user, but not vice versa
+    @OneToOne()
+    @JoinColumn(name = "id")
+    @MapsId // tells spring to use 'id' as both the primary key and foreign key
+    @ToString.Exclude
+    private User user;
 }
