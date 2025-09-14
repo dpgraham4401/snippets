@@ -5,6 +5,16 @@
  * in other words, we can use the preprocessor to manipulate what is compiled.
  * Macros execute text substitution, nothing crazy intelligent, just swaps the macro with
  * C++ that (hopefully) compiles.
+ *
+ *  Advantages:
+ *  - Macros allow us to reuse utility fns, regardless of the types.
+ *
+ *  disadvantages:
+ *  - Macros are not type safe, they just do text substitution.
+ *  - Debugging macros can be difficult, as the error messages may not point to the
+ *  - They can make things more complex to understand if they're overused.
+ *
+ *  We should generally avoid using macros when possible.
  */
 
 #include <iostream>
