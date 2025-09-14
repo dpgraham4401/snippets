@@ -42,18 +42,26 @@ Numeric square(const Numeric val) {
 }
 
 /**
- * multi parameter templates
+ * multi parameter templates, and defaults
  *
  * we can declare type templates with more than 1 parameter.
- * This, on its own is probably only useful with classes,
- * but maybe with concepts/constraints this could be a little
- * more useful for the type system.
+ * We can also add default parameter types, in the below, T2 will be an int
+ * unless specified otherwise.
  */
-template<typename T1, typename T2>
+template<typename T1, typename T2=int>
 class Foo {
     T1 foo;
     T2 bar;
+
+public:
+    Foo(T1 t1, T2 t2) {
+        foo = t1;
+        bar = t2;
+    }
 };
+
+// Here, we only had to specify 1 type, and allow T2 to use the default type of int
+auto foo = Foo<std::string>("foo", 1);
 
 int main() {
     int twenty_five = SQUARE(5);
