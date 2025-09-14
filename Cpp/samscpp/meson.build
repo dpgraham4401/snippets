@@ -37,5 +37,8 @@ abc = executable('abc', 'lesson11/abc.cpp', install : true)
 # lesson 14
 macros = executable('macros', 'lesson14/macros.cpp', install : true)
 
+# lesson 15
+stdlibtemps = executable('stdlibtemps', 'lesson15/std_temp_lib.cpp', install : true)
+
 
 test('test', samscpp)
