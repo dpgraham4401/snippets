@@ -41,6 +41,20 @@ Numeric square(const Numeric val) {
     return val * val;
 }
 
+/**
+ * multi parameter templates
+ *
+ * we can declare type templates with more than 1 parameter.
+ * This, on its own is probably only useful with classes,
+ * but maybe with concepts/constraints this could be a little
+ * more useful for the type system.
+ */
+template<typename T1, typename T2>
+class Foo {
+    T1 foo;
+    T2 bar;
+};
+
 int main() {
     int twenty_five = SQUARE(5);
     std::cout << "5 squared is " << twenty_five << std::endl;
