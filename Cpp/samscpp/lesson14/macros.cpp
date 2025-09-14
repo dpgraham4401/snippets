@@ -18,6 +18,9 @@
  *
  *  Templates:
  *  Templates are a more modern and type-safe way to create generic code.
+ *  An important use of templates is the STL (Standard Template Library),
+ *  which is a collection of template classes and functions containing generic
+ *  utilities classes and algorithms.
  */
 
 #include <iostream>
